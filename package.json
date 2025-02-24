@@ -12,6 +12,8 @@
   ],
   "scripts": {
     "release": "standard-version && rollup -c",
+    "lint": "tsc --noEmit",
+    "test": "npm -v",
     "build": "rollup -c"
   },
   "dependencies": {},
