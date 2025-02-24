@@ -1,0 +1,30 @@
+{
+  "name": "@infomaximum/integration-sdk",
+  "version": "1.0.0",
+  "author": "Infomaximum Frontend Team (https://infomaximum.com)",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "license": "Apache-2.0",
+  "files": [
+    "dist/",
+    "LICENSE"
+  ],
+  "scripts": {
+    "release": "standard-version && rollup -c",
+    "build": "rollup -c"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@infomaximum/config": "^2.7.0",
+    "@rollup/plugin-commonjs": "28.0.2",
+    "@rollup/plugin-node-resolve": "16.0.0",
+    "@rollup/plugin-typescript": "12.1.2",
+    "prettier": "3.5.2",
+    "rollup": "4.34.8",
+    "rollup-plugin-delete": "^3.0.0",
+    "standard-version": "9.5.0",
+    "tslib": "^2.6.2",
+    "typescript": "5.7.3"
+  }
+}
