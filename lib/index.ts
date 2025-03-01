@@ -3,42 +3,116 @@ export type Meta = {
   name: string;
   description: string;
 };
-
 export type IntegrationMeta = Meta;
 export type BlockMeta = Meta;
 export type ConnectionMeta = Meta;
 
-export type BlockInputFieldTypes = "switcher" | "text";
+export type BlockInputFieldTypes =
+  | "switcher"
+  | "text"
+  | "textPlain"
+  | "textArea"
+  | "sqlArea"
+  | "jsArea"
+  | "jsonArea"
+  | "numberPlain"
+  | "select"
+  | "multiSelect"
+  | "keyValue";
+
+
+export type ConnectionInputFieldTypes =
+  | "textPlain"
+  | "password"
+  | "button";
 
 export type BlockInputField = {
   key: string;
   type: BlockInputFieldTypes;
   label: string;
-  required: boolean;
+  description?: string
+  required: "false" | "true";
+} & (
+    | { type: "select" | "multiSelect"; choices: Record<string, string> | { label: string; value: string }[] | string[] }
+    | { type: Exclude<BlockInputFieldTypes, "select" | "multiSelect"> }
+  ) & (
+    | { type: "keyValue"; label2: string; subFieldKeyType: string; subFieldValueType: string; keys: string[] }
+    | { type: Exclude<BlockInputFieldTypes, "keyValue"> }
+  );
+
+export type ConnectionInputField = {
+  key: string;
+  type: ConnectionInputFieldTypes;
+  label: string;
+  required: "false" | "true";
+} & (
+    | {
+      type: "button";
+      executeWithRedirect?: () => void;
+      executeWithSaveFields?: () => Record<string, any>;
+      executeWithMessage?: () => void | string;
+    }
+    | {
+      type: Exclude<ConnectionInputFieldTypes, "button">;
+      executeWithRedirect?: never;
+      executeWithSaveFields?: never;
+      executeWithMessage?: never;
+    }
+  );
+
+type ExecuteService = {
+  base64Encode: (input: string) => string;
+  base64Decode: (input: string) => string;
+  request: (
+    config:
+      | {
+        url: string;
+        method: "GET";
+        headers?: Record<string, string>;
+        // jsonBody и multipartBody недоступны для GET
+      }
+      | {
+        url: string;
+        method: "POST" | "PATCH" | "PUT" | "DELETE";
+        headers?: Record<string, string>;
+        jsonBody?: any;
+        multipartBody?: any;
+      }
+  ) => { status: number; response: any };
+  error: {
+    stringError: (message: string) => void;
+    cause: (message: string) => void
+  };
+  console: (input: string) => void
 };
 
-type ExecuteService = any; // {}
-type ExecuteBundle = any; // {}
+type ExecuteBundle = {
+  inputData: Record<string, any>;
+  authData: Record<string, any>;
+};
+
+type BlockContext = {}
 
 type ExecuteResult = {
-  output: () => any;
+  output_variables: any[],
+  output: any[];
+  state: Record<string, any>;
+  hasNext: boolean
 };
 
-export type IntegrationBlockExecute = (
-  service: ExecuteService,
-  bundle: ExecuteBundle
-) => ExecuteResult;
+
+export type IntegrationBlockExecute = (service: ExecuteService, bundle: ExecuteBundle, context: BlockContext) => ExecuteResult;
 
 export type IntegrationBlock = {
   meta: BlockMeta;
   inputFields: BlockInputField[];
-  execute: IntegrationBlockExecute;
+  executePagination: IntegrationBlockExecute;
 };
 
 export type IntegrationConnection = {
   meta: ConnectionMeta;
-  inputFields: any;
-  execute: any;
+  inputFields: ConnectionInputField[];
+  execute: () => void;
 };
 
 export type Integration = {
@@ -55,3 +129,4 @@ declare global {
 
   var z: ZObject;
 }
+export { };
