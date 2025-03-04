@@ -31,7 +31,7 @@ export type BlockInputField = {
   type: BlockInputFieldTypes;
   label: string;
   description?: string
-  required: "false" | "true";
+  required: boolean;
 } & (
     | { type: "select" | "multiSelect"; choices: Record<string, string> | { label: string; value: string }[] | string[] }
     | { type: Exclude<BlockInputFieldTypes, "select" | "multiSelect"> }
