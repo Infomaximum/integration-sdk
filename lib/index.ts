@@ -99,14 +99,14 @@ export type ExecuteService = {
   console: (input: string) => void;
 };
 
-type ExecuteBundle = {
+export type ExecuteBundle = {
   inputData: Record<string, any>;
   authData: Record<string, any>;
 };
 
 type BlockContext = {};
 
-type ExecuteResult = {
+export type ExecuteResult = {
   output_variables: any[];
   output: any[];
   state: Record<string, any>;
