@@ -114,6 +114,7 @@ export type ExecuteResult = {
 };
 
 export type IntegrationBlockExecute = (
+  this: null,
   service: ExecuteService,
   bundle: ExecuteBundle,
   context: BlockContext
