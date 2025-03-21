@@ -1,7 +1,9 @@
 {
   "extends": "@infomaximum/config/tsconfig.lib.json",
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist/dts"
   },
   "include": ["lib"]
 }
