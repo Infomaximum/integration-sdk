@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/Infomaximum/integration-sdk/compare/v1.3.0...v1.3.1) (2025-03-24)
+
+
+### Bug Fixes
+
+* fixing use function in inputfields and add params to connection methods ([968ec77](https://github.com/Infomaximum/integration-sdk/commit/968ec77579bbe62d13f528cf8d383d9813509b19))
+* removed return empty array ([facc4cc](https://github.com/Infomaximum/integration-sdk/commit/facc4cc9a41b870f10de2f440001e9e669956ead))
+* this is null ([7738005](https://github.com/Infomaximum/integration-sdk/commit/7738005d31c0ca1c112492d0440ae879c3d255e9))
+
 ## [1.3.0](https://github.com/Infomaximum/integration-sdk/compare/v1.2.2...v1.3.0) (2025-03-21)
 
 
