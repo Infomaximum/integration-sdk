@@ -123,7 +123,7 @@ export type IntegrationBlockExecute = (
 
 export type IInputFields = Array<
   | BlockInputField
-  | ((service: ExecuteService, bundle: ExecuteBundle) => BlockInputField[]| [])
+  | ((service: ExecuteService, bundle: ExecuteBundle) => BlockInputField[])
 >;
 
 export type IntegrationBlock = {
