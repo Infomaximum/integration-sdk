@@ -50,13 +50,13 @@ export type ConnectionInputField = {
   key: string;
   type: ConnectionInputFieldTypes;
   label: string;
-  required: "false" | "true";
+  required: boolean;
 } & (
   | {
       type: "button";
-      executeWithRedirect?: () => void;
-      executeWithSaveFields?: () => Record<string, any>;
-      executeWithMessage?: () => void | string;
+      executeWithRedirect?: (service: ExecuteService, bundle: ExecuteBundle) => void;
+      executeWithSaveFields?: (service: ExecuteService, bundle: ExecuteBundle) => Record<string, any>;
+      executeWithMessage?: (service: ExecuteService, bundle: ExecuteBundle) => void | string;
     }
   | {
       type: Exclude<ConnectionInputFieldTypes, "button">;
@@ -120,9 +120,15 @@ export type IntegrationBlockExecute = (
   context: BlockContext
 ) => ExecuteResult;
 
+
+export type IInputFields = Array<
+  | BlockInputField
+  | ((service: ExecuteService, bundle: ExecuteBundle) => BlockInputField[])
+>;
+
 export type IntegrationBlock = {
   meta: BlockMeta;
-  inputFields: BlockInputField[];
+  inputFields: IInputFields;
   executePagination: IntegrationBlockExecute;
 };
 
