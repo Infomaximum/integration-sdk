@@ -1,4 +1,5 @@
 export * from "./block";
+export * from "./debugging";
 export * from "./common";
 export * from "./connection";
 export * from "./integration";
