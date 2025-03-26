@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Infomaximum/integration-sdk/compare/v1.3.2...v1.4.0) (2025-03-26)
+
+
+### Features
+
+* добавлено пространство для типов отладчика ([ef5c697](https://github.com/Infomaximum/integration-sdk/commit/ef5c69715e21e3a9fd485162798feccf921a3ffd))
+
 ### [1.3.2](https://github.com/Infomaximum/integration-sdk/compare/v1.3.1...v1.3.2) (2025-03-25)
 
 ### [1.3.1](https://github.com/Infomaximum/integration-sdk/compare/v1.3.0...v1.3.1) (2025-03-24)
