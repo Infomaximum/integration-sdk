@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/Infomaximum/integration-sdk/compare/v1.4.0...v1.4.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* series может отсутствовать ([42d3cca](https://github.com/Infomaximum/integration-sdk/commit/42d3ccaae2aec0418fd390d966629e7c441d9a3c))
+
 ## [1.4.0](https://github.com/Infomaximum/integration-sdk/compare/v1.3.2...v1.4.0) (2025-03-26)
 
 
