@@ -50,7 +50,7 @@ export type BlockExecuteBundle = {
   authData: Record<string, any>;
 };
 
-export type BlockContext = {};
+export type BlockContext = Record<string, any> | undefined
 
 export type ExecuteResult = {
   output_variables: any[];
