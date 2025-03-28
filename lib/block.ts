@@ -15,8 +15,8 @@ export type BlockInputFieldTypes =
   | "multiSelect"
   | "keyValue";
 
-export type CommonBlockInputField = {
-  key: string;
+export type CommonBlockInputField<Key extends keyof any = string> = {
+  key: Key;
   type: BlockInputFieldTypes;
   label: string;
   description?: string;
@@ -40,17 +40,20 @@ export type OtherBlockInputField = CommonBlockInputField & {
   type: Exclude<BlockInputFieldTypes, "select" | "multiSelect" | "keyValue">;
 };
 
-export type BlockInputField =
-  | SelectBlockInputField
-  | KeyValueBlockInputField
-  | OtherBlockInputField;
+export type BlockInputField<InputData extends Record<string, string>> = CommonBlockInputField<
+  keyof InputData
+> &
+  (SelectBlockInputField | KeyValueBlockInputField | OtherBlockInputField);
 
-export type BlockExecuteBundle = {
-  inputData: Record<string, any>;
-  authData: Record<string, any>;
+export type BlockExecuteBundle<
+  InputData extends Record<string, string>,
+  AuthData extends Record<string, string>,
+> = {
+  inputData: InputData;
+  authData: AuthData;
 };
 
-export type BlockContext = Record<string, any> | undefined
+export type BlockContext = Record<string, any> | undefined;
 
 export type ExecuteResult = {
   output_variables: any[];
@@ -59,20 +62,29 @@ export type ExecuteResult = {
   hasNext: boolean;
 };
 
-export type IntegrationBlockExecute = (
+export type IntegrationBlockExecute<
+  InputData extends Record<string, string>,
+  AuthData extends Record<string, string>,
+> = (
   this: null,
   service: ExecuteService,
-  bundle: BlockExecuteBundle,
+  bundle: BlockExecuteBundle<InputData, AuthData>,
   context: BlockContext
 ) => ExecuteResult;
 
-export type FunctionBlockInputField = (
+export type FunctionBlockInputField<
+  InputData extends Record<string, string>,
+  AuthData extends Record<string, string>,
+> = (
   service: ExecuteService,
-  bundle: BlockExecuteBundle
-) => BlockInputField[];
+  bundle: BlockExecuteBundle<InputData, AuthData>
+) => BlockInputField<InputData>[];
 
-export type IntegrationBlock = {
+export type IntegrationBlock<
+  InputData extends Record<string, string>,
+  AuthData extends Record<string, string>,
+> = {
   meta: BlockMeta;
-  inputFields: (BlockInputField | FunctionBlockInputField)[];
-  executePagination: IntegrationBlockExecute;
+  inputFields: (BlockInputField<InputData> | FunctionBlockInputField<InputData, AuthData>)[];
+  executePagination: IntegrationBlockExecute<InputData, AuthData>;
 };
