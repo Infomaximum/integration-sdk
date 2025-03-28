@@ -7,5 +7,5 @@ export * from "./integration";
 import type { Integration } from "./integration";
 
 declare global {
-  var integration: Integration;
+  var integration: Integration<any, any>;
 }
