@@ -28,7 +28,7 @@ export type ExecuteServiceError = {
 
 export type RequestResult<Response = any> = {
   status: number;
-  response: Response;
+  response: Readonly<Partial<Response>>;
 };
 
 export type ExecuteService = {

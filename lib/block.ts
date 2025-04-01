@@ -70,7 +70,7 @@ export type IntegrationBlockExecute<
   this: null,
   service: ExecuteService,
   bundle: BlockExecuteBundle<InputData, AuthData>,
-  context: Context
+  context: Context | undefined
 ) => ExecuteResult<Context>;
 
 export type FunctionBlockInputField<

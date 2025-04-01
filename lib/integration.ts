@@ -7,6 +7,6 @@ export type IntegrationMeta = Meta;
 export type Integration = {
   schema: number;
   meta: IntegrationMeta;
-  blocks: IntegrationBlock[];
-  connections: IntegrationConnection[];
+  blocks: IntegrationBlock<any, any, any>[];
+  connections: IntegrationConnection<any>[];
 };
