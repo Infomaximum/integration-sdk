@@ -55,22 +55,23 @@ export type BlockExecuteBundle<
 
 export type BlockContext = Record<string, any> | undefined;
 
-export type ExecuteResult = {
+export type ExecuteResult<Context extends BlockContext = undefined> = {
   output_variables: any[];
   output: any[];
-  state: Record<string, any>;
+  state: Context;
   hasNext: boolean;
 };
 
 export type IntegrationBlockExecute<
   InputData extends Record<string, string>,
   AuthData extends Record<string, string>,
+  Context extends BlockContext = undefined,
 > = (
   this: null,
   service: ExecuteService,
   bundle: BlockExecuteBundle<InputData, AuthData>,
-  context: BlockContext
-) => ExecuteResult;
+  context: Context
+) => ExecuteResult<Context>;
 
 export type FunctionBlockInputField<
   InputData extends Record<string, string>,
@@ -81,10 +82,11 @@ export type FunctionBlockInputField<
 ) => BlockInputField<InputData>[];
 
 export type IntegrationBlock<
-  InputData extends Record<string, string>,
-  AuthData extends Record<string, string>,
+  InputData extends Record<string, string> = Record<string, string>,
+  AuthData extends Record<string, string> = Record<string, string>,
+  Context extends BlockContext = undefined,
 > = {
   meta: BlockMeta;
   inputFields: (BlockInputField<InputData> | FunctionBlockInputField<InputData, AuthData>)[];
-  executePagination: IntegrationBlockExecute<InputData, AuthData>;
+  executePagination: IntegrationBlockExecute<InputData, AuthData, Context>;
 };

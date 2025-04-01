@@ -8,7 +8,10 @@ export type ConnectionExecuteBundle<AuthData extends Record<string, string>> = {
   authData: AuthData;
 };
 
-export type ButtonInputFieldConnection<AuthData extends Record<string, string>> = {
+export type ButtonInputFieldConnection<
+  AuthData extends Record<string, string>,
+  AdditionalAuthData extends Record<string, string> = Record<string, string>,
+> = {
   key: string;
   type: "button";
   executeWithRedirect?: (
@@ -18,10 +21,10 @@ export type ButtonInputFieldConnection<AuthData extends Record<string, string>> 
   executeWithSaveFields?: (
     service: ExecuteService,
     bundle: ConnectionExecuteBundle<AuthData>
-  ) => Record<string, any>;
+  ) => AdditionalAuthData;
   executeWithMessage?: (
     service: ExecuteService,
-    bundle: ConnectionExecuteBundle<AuthData>
+    bundle: ConnectionExecuteBundle<AuthData & AdditionalAuthData>
   ) => void | string;
 };
 
@@ -36,8 +39,11 @@ export type CommonConnectionInputField = {
   required: boolean;
 };
 
-export type ConnectionInputField<AuthData extends Record<string, string>> =
-  CommonConnectionInputField & (ButtonInputFieldConnection<AuthData> | OtherInputFieldConnection);
+export type ConnectionInputField<
+  AuthData extends Record<string, string>,
+  AdditionalAuthData extends Record<string, string> = Record<string, string>,
+> = CommonConnectionInputField &
+  (ButtonInputFieldConnection<AuthData, AdditionalAuthData> | OtherInputFieldConnection);
 
 export type ConnectionExecute<AuthData extends Record<string, string>> = (
   this: null,
@@ -45,8 +51,11 @@ export type ConnectionExecute<AuthData extends Record<string, string>> = (
   bundle: ConnectionExecuteBundle<AuthData>
 ) => void;
 
-export type IntegrationConnection<AuthData extends Record<string, string>> = {
+export type IntegrationConnection<
+  AuthData extends Record<string, string> = Record<string, string>,
+  AdditionalAuthData extends Record<string, string> = Record<string, string>,
+> = {
   meta: ConnectionMeta;
-  inputFields: ConnectionInputField<AuthData>[];
-  execute: ConnectionExecute<AuthData>;
+  inputFields: ConnectionInputField<AuthData, AdditionalAuthData>[];
+  execute: ConnectionExecute<AuthData & AdditionalAuthData>;
 };

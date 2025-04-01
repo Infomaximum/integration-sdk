@@ -4,12 +4,9 @@ import type { IntegrationConnection } from "./connection";
 
 export type IntegrationMeta = Meta;
 
-export type Integration<
-  InputData extends Record<string, string>,
-  AuthData extends Record<string, string>,
-> = {
+export type Integration = {
   schema: number;
   meta: IntegrationMeta;
-  blocks: IntegrationBlock<InputData, AuthData>[];
-  connections: IntegrationConnection<AuthData>[];
+  blocks: IntegrationBlock[];
+  connections: IntegrationConnection[];
 };
