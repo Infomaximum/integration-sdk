@@ -11,7 +11,7 @@ export type ConnectionExecuteBundle<AuthData extends Record<string, string>> = {
 export type ButtonInputFieldConnection<
   AuthData extends Record<string, string>,
   AdditionalAuthData extends Record<string, string> = Record<string, string>,
-> = {
+> = CommonConnectionInputField<string> & {
   type: "button";
   executeWithRedirect?: (
     service: ExecuteService,
@@ -25,7 +25,7 @@ export type ButtonInputFieldConnection<
     service: ExecuteService,
     bundle: ConnectionExecuteBundle<AuthData & AdditionalAuthData>
   ) => void | string;
-} & CommonConnectionInputField<string>;
+};
 
 export type OtherInputFieldConnection<Key = string> = CommonConnectionInputField<Key> & {
   type: Exclude<ConnectionInputFieldTypes, "button">;
