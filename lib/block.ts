@@ -53,7 +53,7 @@ export type BlockExecuteBundle<
   authData: AuthData;
 };
 
-export type BlockContext = AnyRecord | undefined;
+export type BlockContext = AnyRecord | string | number | undefined;
 
 export type ExecuteResult<Context extends BlockContext = undefined> = {
   output_variables: any[];

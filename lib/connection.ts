@@ -2,10 +2,14 @@ import type { AnyRecord, ExecuteService, Meta } from "./common";
 
 export type ConnectionMeta = Meta;
 
+export type GlobalAuthData = {
+  BASE_URL: string;
+};
+
 export type ConnectionInputFieldTypes = "textPlain" | "password" | "button";
 
 export type ConnectionExecuteBundle<AuthData extends AnyRecord> = {
-  authData: AuthData;
+  authData: AuthData & GlobalAuthData;
 };
 
 export type ButtonInputFieldConnection<
@@ -20,7 +24,7 @@ export type ButtonInputFieldConnection<
   executeWithSaveFields?: (
     service: ExecuteService,
     bundle: ConnectionExecuteBundle<AuthData>
-  ) => AdditionalAuthData;
+  ) => Partial<AdditionalAuthData>;
   executeWithMessage?: (
     service: ExecuteService,
     bundle: ConnectionExecuteBundle<AuthData & AdditionalAuthData>
