@@ -1,4 +1,4 @@
-import type { ExecuteService, Meta } from "./common";
+import type { AnyRecord, ExecuteService, Meta } from "./common";
 
 export type BlockMeta = Meta;
 
@@ -40,20 +40,20 @@ export type OtherBlockInputField = CommonBlockInputField & {
   type: Exclude<BlockInputFieldTypes, "select" | "multiSelect" | "keyValue">;
 };
 
-export type BlockInputField<InputData extends Record<string, string>> = CommonBlockInputField<
+export type BlockInputField<InputData extends AnyRecord = {}> = CommonBlockInputField<
   keyof InputData
 > &
   (SelectBlockInputField | KeyValueBlockInputField | OtherBlockInputField);
 
 export type BlockExecuteBundle<
-  InputData extends Record<string, string>,
-  AuthData extends Record<string, string>,
+  InputData extends AnyRecord = {},
+  AuthData extends AnyRecord = {},
 > = {
   inputData: InputData;
   authData: AuthData;
 };
 
-export type BlockContext = Record<string, any> | undefined;
+export type BlockContext = AnyRecord | undefined;
 
 export type ExecuteResult<Context extends BlockContext = undefined> = {
   output_variables: any[];
@@ -63,8 +63,8 @@ export type ExecuteResult<Context extends BlockContext = undefined> = {
 };
 
 export type IntegrationBlockExecute<
-  InputData extends Record<string, string>,
-  AuthData extends Record<string, string>,
+  InputData extends AnyRecord = {},
+  AuthData extends AnyRecord = {},
   Context extends BlockContext = undefined,
 > = (
   this: null,
@@ -74,16 +74,16 @@ export type IntegrationBlockExecute<
 ) => ExecuteResult<Context>;
 
 export type FunctionBlockInputField<
-  InputData extends Record<string, string>,
-  AuthData extends Record<string, string>,
+  InputData extends AnyRecord = {},
+  AuthData extends AnyRecord = {},
 > = (
   service: ExecuteService,
   bundle: BlockExecuteBundle<InputData, AuthData>
 ) => BlockInputField<InputData>[];
 
 export type IntegrationBlock<
-  InputData extends Record<string, string> = Record<string, string>,
-  AuthData extends Record<string, string> = Record<string, string>,
+  InputData extends AnyRecord = {},
+  AuthData extends AnyRecord = {},
   Context extends BlockContext = undefined,
 > = {
   meta: BlockMeta;

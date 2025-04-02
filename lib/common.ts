@@ -1,3 +1,5 @@
+export type AnyRecord = Record<string, any>;
+
 export type Meta = {
   key: string;
   name: string;

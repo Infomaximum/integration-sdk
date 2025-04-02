@@ -1,16 +1,16 @@
-import type { ExecuteService, Meta } from "./common";
+import type { AnyRecord, ExecuteService, Meta } from "./common";
 
 export type ConnectionMeta = Meta;
 
 export type ConnectionInputFieldTypes = "textPlain" | "password" | "button";
 
-export type ConnectionExecuteBundle<AuthData extends Record<string, string>> = {
+export type ConnectionExecuteBundle<AuthData extends AnyRecord> = {
   authData: AuthData;
 };
 
 export type ButtonInputFieldConnection<
-  AuthData extends Record<string, string>,
-  AdditionalAuthData extends Record<string, string> = Record<string, string>,
+  AuthData extends AnyRecord,
+  AdditionalAuthData extends AnyRecord = {},
 > = CommonConnectionInputField<string> & {
   type: "button";
   executeWithRedirect?: (
@@ -39,21 +39,21 @@ export type CommonConnectionInputField<Key = string> = {
 };
 
 export type ConnectionInputField<
-  AuthData extends Record<string, string>,
-  AdditionalAuthData extends Record<string, string> = Record<string, string>,
+  AuthData extends AnyRecord,
+  AdditionalAuthData extends AnyRecord = {},
 > =
   | ButtonInputFieldConnection<AuthData, AdditionalAuthData>
   | OtherInputFieldConnection<keyof AuthData>;
 
-export type ConnectionExecute<AuthData extends Record<string, string>> = (
+export type ConnectionExecute<AuthData extends AnyRecord> = (
   this: null,
   service: ExecuteService,
   bundle: ConnectionExecuteBundle<AuthData>
 ) => void;
 
 export type IntegrationConnection<
-  AuthData extends Record<string, string> = Record<string, string>,
-  AdditionalAuthData extends Record<string, string> = Record<string, string>,
+  AuthData extends AnyRecord = {},
+  AdditionalAuthData extends AnyRecord = {},
 > = {
   meta: ConnectionMeta;
   inputFields: ConnectionInputField<AuthData, AdditionalAuthData>[];
