@@ -1,45 +1,65 @@
-import type { ExecuteService, Meta } from "./common";
+import type { AnyRecord, ExecuteService, Meta } from "./common";
 
 export type ConnectionMeta = Meta;
 
+export type GlobalAuthData = {
+  BASE_URL: string;
+};
+
 export type ConnectionInputFieldTypes = "textPlain" | "password" | "button";
 
-export type ConnectionExecuteBundle = {
-  authData: Record<string, any>;
+export type ConnectionExecuteBundle<AuthData extends AnyRecord> = {
+  authData: AuthData & GlobalAuthData;
 };
 
-export type ButtonInputFieldConnection = {
+export type ButtonInputFieldConnection<
+  AuthData extends AnyRecord,
+  AdditionalAuthData extends AnyRecord = {},
+> = CommonConnectionInputField<string> & {
   type: "button";
-  executeWithRedirect?: (service: ExecuteService, bundle: ConnectionExecuteBundle) => void;
+  executeWithRedirect?: (
+    service: ExecuteService,
+    bundle: ConnectionExecuteBundle<AuthData>
+  ) => void;
   executeWithSaveFields?: (
     service: ExecuteService,
-    bundle: ConnectionExecuteBundle
-  ) => Record<string, any>;
-  executeWithMessage?: (service: ExecuteService, bundle: ConnectionExecuteBundle) => void | string;
+    bundle: ConnectionExecuteBundle<AuthData>
+  ) => Partial<AdditionalAuthData>;
+  executeWithMessage?: (
+    service: ExecuteService,
+    bundle: ConnectionExecuteBundle<AuthData & AdditionalAuthData>
+  ) => void | string;
 };
 
-export type OtherInputFieldConnection = {
+export type OtherInputFieldConnection<Key = string> = CommonConnectionInputField<Key> & {
   type: Exclude<ConnectionInputFieldTypes, "button">;
 };
 
-export type CommonConnectionInputField = {
-  key: string;
+export type CommonConnectionInputField<Key = string> = {
+  key: Key;
   type: ConnectionInputFieldTypes;
   label: string;
   required: boolean;
 };
 
-export type ConnectionInputField = CommonConnectionInputField &
-  (ButtonInputFieldConnection | OtherInputFieldConnection);
+export type ConnectionInputField<
+  AuthData extends AnyRecord,
+  AdditionalAuthData extends AnyRecord = {},
+> =
+  | ButtonInputFieldConnection<AuthData, AdditionalAuthData>
+  | OtherInputFieldConnection<keyof AuthData>;
 
-export type ConnectionExecute = (
+export type ConnectionExecute<AuthData extends AnyRecord> = (
   this: null,
   service: ExecuteService,
-  bundle: ConnectionExecuteBundle
+  bundle: ConnectionExecuteBundle<AuthData>
 ) => void;
 
-export type IntegrationConnection = {
+export type IntegrationConnection<
+  AuthData extends AnyRecord = {},
+  AdditionalAuthData extends AnyRecord = {},
+> = {
   meta: ConnectionMeta;
-  inputFields: ConnectionInputField[];
-  execute: ConnectionExecute;
+  inputFields: ConnectionInputField<AuthData, AdditionalAuthData>[];
+  execute: ConnectionExecute<AuthData & AdditionalAuthData>;
 };

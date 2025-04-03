@@ -1,3 +1,5 @@
+export type AnyRecord = Record<string, any>;
+
 export type Meta = {
   key: string;
   name: string;
@@ -22,19 +24,19 @@ export type MutatingRequestConfig = BaseRequestConfig & {
 export type RequestConfig = GetRequestConfig | MutatingRequestConfig;
 
 export type ExecuteServiceError = {
-  stringError: (message: string) => void;
-  cause: (message: string) => void;
+  stringError(message: string): never;
+  cause(message: string): never;
 };
 
-export type RequestResult = {
+export type RequestResult<Response = any> = {
   status: number;
-  response: any;
+  response: Readonly<Partial<Response>>;
 };
 
 export type ExecuteService = {
   base64Encode: (input: string) => string;
   base64Decode: (input: string) => string;
-  request: (config: RequestConfig) => RequestResult;
+  request: <Response>(config: RequestConfig) => RequestResult<Response>;
   error: ExecuteServiceError;
   console: (input: string) => void;
 };
