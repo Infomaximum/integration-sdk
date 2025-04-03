@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Infomaximum/integration-sdk/compare/v1.4.2...v2.0.0) (2025-04-03)
+
+
+### Features
+
+* начальная реализация с использованием generics ([8937b4b](https://github.com/Infomaximum/integration-sdk/commit/8937b4b01b1afb875683debff67aeabcf8fa6e06))
+
+
+### Bug Fixes
+
+* исправлены дженерики ([b7eb96e](https://github.com/Infomaximum/integration-sdk/commit/b7eb96e3d175b3943ca5660ec887bf421e766045))
+* исправлены типы ([a32dd2d](https://github.com/Infomaximum/integration-sdk/commit/a32dd2d3cda4e133481751b6b06e955d9e88fc56))
+* исправлены типы ([cf5048b](https://github.com/Infomaximum/integration-sdk/commit/cf5048b7c105d8b94315ff7544fe79765c8cd896))
+* исправлены типы подключения ([08777b1](https://github.com/Infomaximum/integration-sdk/commit/08777b1f03412d63ad1a57352163423f38fa1dc4))
+* types ([f4dc50b](https://github.com/Infomaximum/integration-sdk/commit/f4dc50b8b6ac9cfe91ed024ac2b5e55a77061bdc))
+
 ### [1.4.2](https://github.com/Infomaximum/integration-sdk/compare/v1.4.1...v1.4.2) (2025-03-27)
 
 
