@@ -50,6 +50,14 @@ export type BigDecimalArrayOutput = CommonOutput & {
   type: "BigDecimalArray";
 };
 
+export type DateTimeOutput = CommonOutput & {
+  type: "DateTime";
+};
+
+export type DateTimeArrayOutput = CommonOutput & {
+  type: "DateTimeArray";
+};
+
 export type ObjectOutput = CommonOutput & {
   type: "Object";
   struct: OutputBlockVariables[];
@@ -58,6 +66,10 @@ export type ObjectOutput = CommonOutput & {
 export type ObjectArrayOutput = CommonOutput & {
   type: "ObjectArray";
   struct: ObjectOutput[];
+};
+
+export type FileOutput = CommonOutput & {
+  type: "File";
 };
 
 export type OutputBlockVariables =
@@ -73,5 +85,8 @@ export type OutputBlockVariables =
   | BigIntegerArrayOutput
   | BigDecimalOutput
   | BigDecimalArrayOutput
+  | DateTimeOutput
+  | DateTimeArrayOutput
   | ObjectOutput
-  | ObjectArrayOutput;
+  | ObjectArrayOutput
+  | FileOutput;
