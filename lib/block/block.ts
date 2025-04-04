@@ -1,4 +1,5 @@
-import type { AnyRecord, ExecuteService, Meta } from "./common";
+import type { AnyRecord, ExecuteService, Meta } from "../common";
+import type { OutputBlockVariables } from "./output";
 
 export type BlockMeta = Meta;
 
@@ -56,7 +57,7 @@ export type BlockExecuteBundle<
 export type BlockContext = AnyRecord | string | number | undefined;
 
 export type ExecuteResult<Context extends BlockContext = undefined> = {
-  output_variables: any[];
+  output_variables: OutputBlockVariables[];
   output: any[];
   state: Context;
   hasNext: boolean;
