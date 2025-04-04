@@ -1,4 +1,4 @@
-import type { IntegrationBlock } from "./block";
+import type { IntegrationBlock } from "./block/block";
 import type { Meta } from "./common";
 import type { IntegrationConnection } from "./connection";
 
