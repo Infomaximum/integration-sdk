@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/integration-sdk",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": "Infomaximum Frontend Team (https://infomaximum.com)",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
