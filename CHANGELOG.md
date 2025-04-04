@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Infomaximum/integration-sdk/compare/v2.0.0...v2.1.0) (2025-04-04)
+
+
+### Features
+
+* добавлены типы output_variables ([31c6206](https://github.com/Infomaximum/integration-sdk/commit/31c6206644df400b9d8a40cbed4cd312c46fabd3))
+
 ## [2.0.0](https://github.com/Infomaximum/integration-sdk/compare/v1.4.2...v2.0.0) (2025-04-03)
 
 
