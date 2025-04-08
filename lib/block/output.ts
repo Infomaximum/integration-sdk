@@ -65,7 +65,7 @@ export type ObjectOutput = CommonOutput & {
 
 export type ObjectArrayOutput = CommonOutput & {
   type: "ObjectArray";
-  struct: ObjectOutput[];
+  struct: OutputBlockVariables[];
 };
 
 export type FileOutput = CommonOutput & {
