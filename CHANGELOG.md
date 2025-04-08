@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/Infomaximum/integration-sdk/compare/v2.2.0...v2.2.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* исправлен тип структуры ObjectArrayOutput ([87d510b](https://github.com/Infomaximum/integration-sdk/commit/87d510bbce2a8f4aeb54ceed96ad9df195d997b0))
+
 ## [2.2.0](https://github.com/Infomaximum/integration-sdk/compare/v2.1.0...v2.2.0) (2025-04-04)
 
 
