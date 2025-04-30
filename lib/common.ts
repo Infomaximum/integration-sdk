@@ -23,17 +23,26 @@ export type MutatingRequestConfig = BaseRequestConfig & {
 
 export type RequestConfig = GetRequestConfig | MutatingRequestConfig;
 
-
 export type RequestResult<Response = any> = {
   status: number;
   response: Readonly<Partial<Response>>;
 };
-
-export type ExecuteService = {
+export type ExecuteServiceAuth = {
+  hook: (
+    fn: (url: string, headers: Record<string, string>) => string,
+    guid: string,
+    timeout: number
+  ) => string | undefined;
+};
+export type ExecuteServiceUtils = {
   base64Encode: (input: string) => string;
   base64Decode: (input: string) => string;
-  request: <Response>(config: RequestConfig) => RequestResult<Response>;
   stringError(message: string): never;
-  hook : (fn: (url: string, headers: Record<string, string>) => string,guid:string,timeout:number) => string | undefined;
   console: (input: string) => void;
 };
+
+export type ExecuteServiceNetwork = {
+  request: <Response>(config: RequestConfig) => RequestResult<Response>;
+};
+
+export type ExecuteService = ExecuteServiceAuth & ExecuteServiceNetwork & ExecuteServiceUtils;
