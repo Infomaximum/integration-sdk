@@ -12,10 +12,12 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "release": "standard-version && rollup -c",
+    "release": "standard-version",
+    "prerelease": "standard-version -p",
     "lint": "tsc --noEmit",
     "test": "npm -v",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {},
   "devDependencies": {
