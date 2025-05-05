@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-0](https://github.com/Infomaximum/integration-sdk/compare/v2.3.0...v3.0.0-0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* изменения под новый серверный движок
+
+### Bug Fixes
+
+* Убрана лишняя вложенность для ошибок и добавлен новый метод 'hoo… ([#6](https://github.com/Infomaximum/integration-sdk/issues/6)) ([f076784](https://github.com/Infomaximum/integration-sdk/commit/f076784a68166c456a9f08fd14e9abbe0bfe2959))
+
 ## [2.3.0](https://github.com/Infomaximum/integration-sdk/compare/v2.2.1...v2.3.0) (2025-04-09)
 
 
