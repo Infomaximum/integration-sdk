@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-1](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-0...v3.0.0-1) (2025-05-15)
+
+
+### Bug Fixes
+
+* Изменение формата ответа от service.request ([1eb29f6](https://github.com/Infomaximum/integration-sdk/commit/1eb29f65d1cc7bd6a7cb70e1318d180bd352df15))
+
 ## [3.0.0-0](https://github.com/Infomaximum/integration-sdk/compare/v2.3.0...v3.0.0-0) (2025-05-05)
 
 
