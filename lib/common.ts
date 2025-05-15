@@ -23,9 +23,9 @@ export type MutatingRequestConfig = BaseRequestConfig & {
 
 export type RequestConfig = GetRequestConfig | MutatingRequestConfig;
 
-export type RequestResult<Response = any> = {
+export type RequestResult<Response = ArrayBuffer> = {
   status: number;
-  response: Readonly<Partial<Response>>;
+  response: Readonly<Response> | undefined;
 };
 export type ExecuteServiceAuth = {
   hook: (
