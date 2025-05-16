@@ -34,7 +34,7 @@ export type KeyValueBlockInputField = CommonBlockInputField & {
   label2: string;
   subFieldKeyType: string;
   subFieldValueType: string;
-  keys: string[];
+  keys?: string[];
 };
 
 export type OtherBlockInputField = CommonBlockInputField & {
