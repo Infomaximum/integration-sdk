@@ -1,6 +1,4 @@
-import type { AnyRecord, ExecuteService, Meta } from "./common";
-
-export type ConnectionMeta = Meta;
+import type { AnyRecord, ExecuteService } from "./common";
 
 export type GlobalAuthData = {
   BASE_URL: string;
@@ -59,7 +57,8 @@ export type IntegrationConnection<
   AuthData extends AnyRecord = {},
   AdditionalAuthData extends AnyRecord = {},
 > = {
-  meta: ConnectionMeta;
+  label: string;
+  description: string;
   inputFields: ConnectionInputField<AuthData, AdditionalAuthData>[];
   execute: ConnectionExecute<AuthData & AdditionalAuthData>;
 };

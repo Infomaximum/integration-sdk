@@ -1,10 +1,6 @@
 export type AnyRecord = Record<string, any>;
 
-export type Meta = {
-  key: string;
-  name: string;
-  description: string;
-};
+
 
 export type BaseRequestConfig = {
   url: string;
