@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-2](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-1...v3.0.0-2) (2025-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Обновление общей структуры интеграции
+
+### Bug Fixes
+
+* Обновление общей структуры интеграции ([2423740](https://github.com/Infomaximum/integration-sdk/commit/2423740cc379e5ad168cdb3e7dc0dd5a3ff03151))
+* поле keys в InputField keyValue не является обязательным ([fa76139](https://github.com/Infomaximum/integration-sdk/commit/fa76139311503313b88c98a94007b9af4da0fde3))
+
 ## [3.0.0-1](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-0...v3.0.0-1) (2025-05-15)
 
 
