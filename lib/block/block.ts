@@ -1,7 +1,6 @@
-import type { AnyRecord, ExecuteService, Meta } from "../common";
+import type { AnyRecord, ExecuteService} from "../common";
 import type { OutputBlockVariables } from "./output";
 
-export type BlockMeta = Meta;
 
 export type BlockInputFieldTypes =
   | "switcher"
@@ -34,7 +33,7 @@ export type KeyValueBlockInputField = CommonBlockInputField & {
   label2: string;
   subFieldKeyType: string;
   subFieldValueType: string;
-  keys: string[];
+  keys?: string[];
 };
 
 export type OtherBlockInputField = CommonBlockInputField & {
@@ -87,7 +86,8 @@ export type IntegrationBlock<
   AuthData extends AnyRecord = {},
   Context extends BlockContext = undefined,
 > = {
-  meta: BlockMeta;
+  label: string;
+  description: string;
   inputFields: (BlockInputField<InputData> | FunctionBlockInputField<InputData, AuthData>)[];
   executePagination: IntegrationBlockExecute<InputData, AuthData, Context>;
 };
