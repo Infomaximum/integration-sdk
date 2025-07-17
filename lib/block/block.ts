@@ -71,7 +71,7 @@ export type IntegrationBlockExecute<
   service: ExecuteService,
   bundle: BlockExecuteBundle<InputData, AuthData>,
   context: Context | undefined
-) => ExecuteResult<Context>;
+) => ExecuteResult<Context> | Promise<ExecuteResult<Context>>;
 
 export type FunctionBlockInputField<
   InputData extends AnyRecord = {},
