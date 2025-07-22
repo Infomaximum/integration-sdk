@@ -107,5 +107,3 @@ export const createApiClient = (client: HttpClient) => ({
       headers,
     }),
 });
-
-//http://172.18.0.1:8000/
