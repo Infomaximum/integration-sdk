@@ -2,14 +2,8 @@ import type {
   RequestConfig,
   ExecuteService,
   MutatingRequestConfig,
-} from "@infomaximum/integration-sdk";
-
-export type MultipartBodyConfig = {
-  key: string;
-  fileName: string;
-  fileValue: ArrayBuffer;
-  contentType: string;
-};
+  MultipartBodyConfig,
+} from "../../common";
 
 interface IHttpClient {
   headers: Record<string, string>;
