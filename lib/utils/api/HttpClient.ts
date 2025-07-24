@@ -2,34 +2,36 @@ import type {
   RequestConfig,
   ExecuteService,
   MutatingRequestConfig,
-  MultipartBodyConfig,
-} from "../../common";
+} from "@infomaximum/integration-sdk";
+
+export type MultipartBodyConfig = {
+  key: string;
+  fileName: string;
+  fileValue: ArrayBuffer;
+  contentType: string;
+};
 
 interface IHttpClient {
-  Authorization: string;
-  request<T>(config: RequestConfig): Promise<T | ArrayBuffer>;
+  headers: Record<string, string>;
+  request<T>(config: RequestConfig): T | ArrayBuffer;
 }
 
 type GetReturn<T, IsFile extends boolean> = IsFile extends true ? ArrayBuffer : T;
 
 export class HttpClient implements IHttpClient {
-  Authorization: string;
+  headers: Record<string, string>;
   private executeService: ExecuteService;
 
-  constructor(token: string, executeService: ExecuteService) {
-    this.Authorization = token;
+  constructor(headers: Record<string, string>, executeService: ExecuteService) {
+    this.headers = headers;
     this.executeService = executeService;
   }
-  async request<T>(config: RequestConfig, isFile: boolean = false): Promise<T | ArrayBuffer> {
+  request<T>(config: RequestConfig, isFile: boolean = false): T | ArrayBuffer {
     // Добавляем заголовок авторизации
-    const headers = {
-      ...(config.headers ?? {}),
-      Authorization: this.Authorization,
-    };
 
     const requestConfig: RequestConfig = {
       ...config,
-      headers,
+      headers: { ...config.headers, ...this.headers },
     };
 
     // ExecuteService.request может ожидать jsonBody или multipartBody,
@@ -59,8 +61,8 @@ export class HttpClient implements IHttpClient {
     // Парсим JSON из ArrayBuffer
     try {
       return isFile
-        ? (JSON.parse(new TextDecoder().decode(response.response as ArrayBuffer)) as T)
-        : (response.response as ArrayBuffer);
+        ? (response.response as ArrayBuffer)
+        : (JSON.parse(new TextDecoder().decode(response.response as ArrayBuffer)) as T);
     } catch (err) {
       throw new Error(`Failed to parse JSON response: ${(err as Error).message}`);
     }
@@ -72,7 +74,7 @@ export const createApiClient = (client: HttpClient) => ({
     url: string,
     isFile?: IsFile,
     headers?: Record<string, string>
-  ) => client.request<T>({ url, method: "GET", headers }, !isFile) as Promise<GetReturn<T, IsFile>>,
+  ) => client.request<T>({ url, method: "GET", headers }, isFile) as GetReturn<T, IsFile>,
 
   post: <T>(
     url: string,
