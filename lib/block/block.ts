@@ -1,50 +1,6 @@
-import type { AnyRecord, ExecuteService} from "../common";
+import type { AnyRecord, ExecuteService } from "../common";
 import type { OutputBlockVariables } from "./output";
-
-
-export type BlockInputFieldTypes =
-  | "switcher"
-  | "text"
-  | "textPlain"
-  | "textArea"
-  | "sqlArea"
-  | "jsArea"
-  | "jsonArea"
-  | "numberPlain"
-  | "select"
-  | "multiSelect"
-  | "keyValue";
-
-export type CommonBlockInputField<Key extends keyof any = string> = {
-  key: Key;
-  type: BlockInputFieldTypes;
-  label: string;
-  description?: string;
-  required: boolean;
-};
-
-export type SelectBlockInputField = CommonBlockInputField & {
-  type: "select" | "multiSelect";
-  choices: Record<string, string> | { label: string; value: string }[] | string[];
-};
-
-export type KeyValueBlockInputField = CommonBlockInputField & {
-  type: "keyValue";
-  label2: string;
-  subFieldKeyType: string;
-  subFieldValueType: string;
-  keys?: string[];
-};
-
-export type OtherBlockInputField = CommonBlockInputField & {
-  type: Exclude<BlockInputFieldTypes, "select" | "multiSelect" | "keyValue">;
-};
-
-export type BlockInputField<InputData extends AnyRecord = {}> = CommonBlockInputField<
-  keyof InputData
-> &
-  (SelectBlockInputField | KeyValueBlockInputField | OtherBlockInputField);
-
+import type { BlockInputField } from "./input";
 export type BlockExecuteBundle<
   InputData extends AnyRecord = {},
   AuthData extends AnyRecord = {},
@@ -71,7 +27,7 @@ export type IntegrationBlockExecute<
   service: ExecuteService,
   bundle: BlockExecuteBundle<InputData, AuthData>,
   context: Context | undefined
-) => ExecuteResult<Context>;
+) => ExecuteResult<Context> | Promise<ExecuteResult<Context>>;
 
 export type FunctionBlockInputField<
   InputData extends AnyRecord = {},

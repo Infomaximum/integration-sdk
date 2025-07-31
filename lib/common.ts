@@ -11,10 +11,17 @@ export type GetRequestConfig = BaseRequestConfig & {
   method: "GET";
 };
 
+export type MultipartBodyConfig = {
+    key:string
+    fileName:string;
+    fileValue:ArrayBuffer;
+    contentType:string
+}
+
 export type MutatingRequestConfig = BaseRequestConfig & {
   method: "POST" | "PATCH" | "PUT" | "DELETE";
   jsonBody?: any;
-  multipartBody?: any;
+  multipartBody?: MultipartBodyConfig[];
 };
 
 export type RequestConfig = GetRequestConfig | MutatingRequestConfig;
