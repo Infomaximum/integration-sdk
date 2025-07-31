@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-2](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-1...v3.0.0-2) (2025-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Обновление общей структуры интеграции
+
+### Bug Fixes
+
+* Обновление общей структуры интеграции ([2423740](https://github.com/Infomaximum/integration-sdk/commit/2423740cc379e5ad168cdb3e7dc0dd5a3ff03151))
+* поле keys в InputField keyValue не является обязательным ([fa76139](https://github.com/Infomaximum/integration-sdk/commit/fa76139311503313b88c98a94007b9af4da0fde3))
+
+## [3.0.0-1](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-0...v3.0.0-1) (2025-05-15)
+
+
+### Bug Fixes
+
+* Изменение формата ответа от service.request ([1eb29f6](https://github.com/Infomaximum/integration-sdk/commit/1eb29f65d1cc7bd6a7cb70e1318d180bd352df15))
+
+## [3.0.0-0](https://github.com/Infomaximum/integration-sdk/compare/v2.3.0...v3.0.0-0) (2025-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* изменения под новый серверный движок
+
+### Bug Fixes
+
+* Убрана лишняя вложенность для ошибок и добавлен новый метод 'hoo… ([#6](https://github.com/Infomaximum/integration-sdk/issues/6)) ([f076784](https://github.com/Infomaximum/integration-sdk/commit/f076784a68166c456a9f08fd14e9abbe0bfe2959))
+
 ## [2.3.0](https://github.com/Infomaximum/integration-sdk/compare/v2.2.1...v2.3.0) (2025-04-09)
 
 
