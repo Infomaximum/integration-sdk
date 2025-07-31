@@ -7,5 +7,5 @@ export * from "./utils/api/HttpClient";
 import type { Integration } from "./integration";
 
 declare global {
-  var integration: Integration;
+  var app: Integration;
 }
