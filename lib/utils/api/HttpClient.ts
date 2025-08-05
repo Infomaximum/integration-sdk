@@ -7,7 +7,7 @@ import type {
 
 interface IHttpClient {
   headers: Record<string, string>;
-  request<T>(config: RequestConfig): T | ArrayBuffer;
+  request<T>(config: RequestConfig): T | ArrayBuffer | undefined;
 }
 
 type GetReturn<T, IsFile extends boolean> = IsFile extends true ? ArrayBuffer : T;
@@ -20,7 +20,7 @@ export class HttpClient implements IHttpClient {
     this.headers = headers;
     this.executeService = executeService;
   }
-  request<T>(config: RequestConfig, isFile: boolean = false): T | ArrayBuffer {
+  request<T>(config: RequestConfig, isFile: boolean = false): T | ArrayBuffer | undefined {
     // Добавляем заголовок авторизации
 
     const requestConfig: RequestConfig = {
@@ -48,9 +48,7 @@ export class HttpClient implements IHttpClient {
       throw new Error(`HTTP Error ${response.status}: ${errorText}`);
     }
 
-    if (response.status === 204) {
-      throw new Error(`No Content: ${requestConfig.url}`);
-    }
+    if (response.status === 204) return;
 
     // Парсим JSON из ArrayBuffer
     try {
