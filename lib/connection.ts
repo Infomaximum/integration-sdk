@@ -4,7 +4,7 @@ export type GlobalAuthData = {
   BASE_URL: string;
 };
 
-export type ConnectionInputFieldTypes = "textPlain" | "password" | "button";
+export type ConnectionInputFieldTypes = "text" | "password" | "number" | "button";
 
 export type ConnectionExecuteBundle<AuthData extends AnyRecord> = {
   authData: AuthData & GlobalAuthData;
@@ -15,18 +15,17 @@ export type ButtonInputFieldConnection<
   AdditionalAuthData extends AnyRecord = {},
 > = CommonConnectionInputField<string> & {
   type: "button";
-  executeWithRedirect?: (
-    service: ExecuteService,
-    bundle: ConnectionExecuteBundle<AuthData>
-  ) => void;
-  executeWithSaveFields?: (
-    service: ExecuteService,
-    bundle: ConnectionExecuteBundle<AuthData>
-  ) => Partial<AdditionalAuthData>;
-  executeWithMessage?: (
-    service: ExecuteService,
-    bundle: ConnectionExecuteBundle<AuthData & AdditionalAuthData>
-  ) => void | string;
+  typeOptions: {
+    redirect?: (service: ExecuteService, bundle: ConnectionExecuteBundle<AuthData>) => void;
+    saveFields?: (
+      service: ExecuteService,
+      bundle: ConnectionExecuteBundle<AuthData>
+    ) => Partial<AdditionalAuthData>;
+    message?: (
+      service: ExecuteService,
+      bundle: ConnectionExecuteBundle<AuthData & AdditionalAuthData>
+    ) => void | string;
+  };
 };
 
 export type OtherInputFieldConnection<Key = string> = CommonConnectionInputField<Key> & {
@@ -37,7 +36,6 @@ export type CommonConnectionInputField<Key = string> = {
   key: Key;
   type: ConnectionInputFieldTypes;
   label: string;
-  required: boolean;
 };
 
 export type ConnectionInputField<
@@ -53,12 +51,20 @@ export type ConnectionExecute<AuthData extends AnyRecord> = (
   bundle: ConnectionExecuteBundle<AuthData>
 ) => void;
 
+export type FunctionConnectionInputField<AuthData extends AnyRecord = {}> = (
+  service: ExecuteService,
+  bundle: ConnectionExecuteBundle<AuthData>
+) => ConnectionInputField<AuthData>[];
+
 export type IntegrationConnection<
   AuthData extends AnyRecord = {},
   AdditionalAuthData extends AnyRecord = {},
 > = {
   label: string;
   description: string;
-  inputFields: ConnectionInputField<AuthData, AdditionalAuthData>[];
+  inputFields: (
+    | ConnectionInputField<AuthData, AdditionalAuthData>
+    | FunctionConnectionInputField<AuthData>
+  )[];
   execute: ConnectionExecute<AuthData & AdditionalAuthData>;
 };
