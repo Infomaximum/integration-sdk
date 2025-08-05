@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/Infomaximum/integration-sdk/compare/v3.0.1...v3.0.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* correct return type for 204 No Content response ([92b4812](https://github.com/Infomaximum/integration-sdk/commit/92b48124905b0bde7977fecc6ec4575877a00335))
+
 ### [3.0.1](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0...v3.0.1) (2025-08-05)
 
 
