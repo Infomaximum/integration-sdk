@@ -1,10 +1,10 @@
 export type AnyRecord = Record<string, any>;
 
-
-
 export type BaseRequestConfig = {
   url: string;
   headers?: Record<string, string>;
+  repeatMode?: boolean;
+  timeout?: number;
 };
 
 export type GetRequestConfig = BaseRequestConfig & {
@@ -12,11 +12,11 @@ export type GetRequestConfig = BaseRequestConfig & {
 };
 
 export type MultipartBodyConfig = {
-    key:string
-    fileName:string;
-    fileValue:ArrayBuffer;
-    contentType:string
-}
+  key: string;
+  fileName: string;
+  fileValue: ArrayBuffer;
+  contentType: string;
+};
 
 export type MutatingRequestConfig = BaseRequestConfig & {
   method: "POST" | "PATCH" | "PUT" | "DELETE";
