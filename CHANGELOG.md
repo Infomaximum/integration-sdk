@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/Infomaximum/integration-sdk/compare/v3.0.1...v3.0.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* correct return type for 204 No Content response ([92b4812](https://github.com/Infomaximum/integration-sdk/commit/92b48124905b0bde7977fecc6ec4575877a00335))
+
+### [3.0.1](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0...v3.0.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* fixed connection fields ([4435000](https://github.com/Infomaximum/integration-sdk/commit/443500011226fc39c4f97db9b246adf332a85fd7))
+
+## [3.0.0](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-2...v3.0.0) (2025-07-31)
+
+
+### Features
+
+* added new input fields ([317b4f7](https://github.com/Infomaximum/integration-sdk/commit/317b4f70b8b60eb62c9493b4ee632523426417de))
+* added the ability to operate in asynchronous mode ([23fd0b4](https://github.com/Infomaximum/integration-sdk/commit/23fd0b4300b38352c50c62d505f7f0e489c1e6b4))
+* added wrapper on service.request as HTTP Module ([f99f95a](https://github.com/Infomaximum/integration-sdk/commit/f99f95a9f35dbc3597100fb0794588247986cf5e))
+
+
+### Bug Fixes
+
+* fix http client headers ([13f377d](https://github.com/Infomaximum/integration-sdk/commit/13f377de28d348aba3fa0daa76eddbcf9968d874))
+* fix import ([56cb5ee](https://github.com/Infomaximum/integration-sdk/commit/56cb5ee44ba03fd642a3818d5535b1c7ac5d406a))
+* fixed global naming ([8e7fca2](https://github.com/Infomaximum/integration-sdk/commit/8e7fca2577a63801a9d356957030acbb8a68e47c))
+
 ## [3.0.0-2](https://github.com/Infomaximum/integration-sdk/compare/v3.0.0-1...v3.0.0-2) (2025-06-02)
 
 
