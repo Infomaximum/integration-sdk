@@ -3,11 +3,16 @@ import type { AnyRecord } from "../common";
 export type BlockInputFieldTypes =
   | "text"
   | "number"
+  | "integer"
   | "select"
   | "keyValue"
   | "boolean"
   | "code"
-  | "group";
+  | "group"
+  | "date"
+  | "datetime"
+  | "stream"
+  | "array";
 
 export type SqlDialect =
   | "cassandra"
@@ -52,6 +57,31 @@ export type NumberBlockInputField = CommonBlockInputField & {
   typeOptions?: {
     min?: number;
     max?: number;
+  };
+};
+
+export type IntegerBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "integer";
+  typeOptions?: {
+    min?: number;
+    max?: number;
+  };
+};
+export type DateBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "date";
+  typeOptions?: {
+    min?: number;
+    max?: number;
+    disabledDate: number[];
+  };
+};
+
+export type DateTimeBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "datetime";
+  typeOptions?: {
+    min?: number;
+    max?: number;
+    disabledDate: number[];
   };
 };
 
@@ -104,6 +134,10 @@ export type CodeBlockInputField<Key extends string = string> = CommonBlockInputF
       }
   );
 
+export type StreamBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "stream";
+};
+
 export type GroupBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
   type: "group";
   properties: (
@@ -113,6 +147,24 @@ export type GroupBlockInputField<Key extends string = string> = CommonBlockInput
     | KeyValueBlockInputField
     | BooleanBlockInputField
     | CodeBlockInputField
+    | DateBlockInputField
+    | DateTimeBlockInputField
+  )[];
+};
+
+export type ArrayBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "array";
+  properties: (
+    | TextBlockInputField
+    | NumberBlockInputField
+    | SelectBlockInputField
+    | KeyValueBlockInputField
+    | BooleanBlockInputField
+    | CodeBlockInputField
+    | DateBlockInputField
+    | DateTimeBlockInputField
+    | StreamBlockInputField
+    | IntegerBlockInputField
   )[];
 };
 
@@ -127,4 +179,9 @@ export type BlockInputField<InputData extends AnyRecord = {}> = CommonBlockInput
     | BooleanBlockInputField
     | CodeBlockInputField
     | GroupBlockInputField
+    | DateBlockInputField
+    | DateTimeBlockInputField
+    | IntegerBlockInputField
+    | StreamBlockInputField
+    | ArrayBlockInputField
   );
