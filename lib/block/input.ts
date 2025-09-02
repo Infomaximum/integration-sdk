@@ -149,6 +149,8 @@ export type GroupBlockInputField<Key extends string = string> = CommonBlockInput
     | CodeBlockInputField
     | DateBlockInputField
     | DateTimeBlockInputField
+    | StreamBlockInputField
+    | IntegerBlockInputField
   )[];
 };
 

@@ -54,7 +54,7 @@ export class HttpClient implements IHttpClient {
     try {
       return isFile
         ? (response.response as ArrayBuffer)
-        : (JSON.parse(new TextDecoder().decode(response.response as ArrayBuffer)) as T);
+        : (new TextDecoder().decode(response.response as ArrayBuffer) as T);
     } catch (err) {
       throw new Error(`Failed to parse JSON response: ${(err as Error).message}`);
     }
