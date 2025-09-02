@@ -27,7 +27,7 @@ export type SqlDialect =
   | "sqlite"
   | "standard";
 
-export type CodeBlockEditorType = "python" | "sql" | "html" | "yaml" | "javascript";
+export type CodeBlockEditorType = "python" | "sql" | "html" | "yaml" | "javascript" | "json";
 
 export type CommonBlockInputField<Key extends keyof any = string> = {
   key: Key;
