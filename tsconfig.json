@@ -2,8 +2,6 @@
   "extends": "@infomaximum/config/tsconfig.lib.json",
   "compilerOptions": {
     "outDir": "dist",
-    "module": "preserve",
-    "moduleResolution": "bundler",
     "declaration": true,
     "declarationDir": "dist/dts",
     "erasableSyntaxOnly": true
