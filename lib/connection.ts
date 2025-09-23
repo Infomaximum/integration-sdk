@@ -67,4 +67,5 @@ export type IntegrationConnection<
     | FunctionConnectionInputField<AuthData>
   )[];
   execute: ConnectionExecute<AuthData & AdditionalAuthData>;
+  refresh: ConnectionExecute<AuthData & AdditionalAuthData>;
 };

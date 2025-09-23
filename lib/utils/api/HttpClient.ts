@@ -50,7 +50,6 @@ export class HttpClient implements IHttpClient {
 
     if (response.status === 204) return;
 
-    // Парсим JSON из ArrayBuffer
     try {
       return isFile
         ? (response.response as ArrayBuffer)
