@@ -2,14 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [3.1.1](https://github.com/Infomaximum/integration-sdk/compare/v3.1.0...v3.1.1) (2025-09-02)
-
-
-### Bug Fixes
-
-* add code field prop ([71e4142](https://github.com/Infomaximum/integration-sdk/commit/71e4142be8c3aca65bcdd8c54024678067867127))
-* added missing fields in group field and remove parsing response ([6778d99](https://github.com/Infomaximum/integration-sdk/commit/6778d994c3e5267a98deccb8dd1e92419ab13c87))
-
 ## [3.1.0](https://github.com/Infomaximum/integration-sdk/compare/v3.0.2...v3.1.0) (2025-08-28)
 
 
