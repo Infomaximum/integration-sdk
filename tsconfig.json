@@ -5,6 +5,8 @@
     "module": "preserve",
     "moduleResolution": "bundler",
     "declaration": true,
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "declarationDir": "dist/dts",
     "erasableSyntaxOnly": true
   },
