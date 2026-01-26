@@ -41,7 +41,6 @@ export type ExecuteServiceUtils = {
   base64Encode: (input: string) => string;
   base64Decode: (input: string) => string;
   stringError(message: string): never;
-  console: (input: string) => void;
 };
 
 export type ExecuteServiceNetwork = {
