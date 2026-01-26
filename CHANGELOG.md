@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/Infomaximum/integration-sdk/compare/v3.1.1...v3.2.0) (2025-09-23)
+
+
+### Features
+
+* added support refresh mechanism ([d6e2d98](https://github.com/Infomaximum/integration-sdk/commit/d6e2d9870fe9d5fc120c560886a03799145ba70b))
+* refactor net middleware ([f09231e](https://github.com/Infomaximum/integration-sdk/commit/f09231e40528cb45533b56ed42abf8f117f697f3))
+
+
+### Bug Fixes
+
+* remove duplicate ([49c498c](https://github.com/Infomaximum/integration-sdk/commit/49c498cea97f3cfd8d7e580147000067888ad031))
+* remove strategies ([bd73b68](https://github.com/Infomaximum/integration-sdk/commit/bd73b68168400a7044f920d5809c3b54a5083708))
+
 ### [3.1.1](https://github.com/Infomaximum/integration-sdk/compare/v3.1.0...v3.1.1) (2025-09-02)
 
 
