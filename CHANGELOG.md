@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.1](https://github.com/Infomaximum/integration-sdk/compare/v3.2.0...v3.2.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* removed deprecated method and add typeoptions ([9febcfd](https://github.com/Infomaximum/integration-sdk/commit/9febcfd67042986e3737697c02768412f71adf5b))
+
 ## [3.2.0](https://github.com/Infomaximum/integration-sdk/compare/v3.1.1...v3.2.0) (2025-09-23)
 
 
