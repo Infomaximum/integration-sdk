@@ -168,6 +168,10 @@ export type ArrayBlockInputField<Key extends string = string> = CommonBlockInput
     | StreamBlockInputField
     | IntegerBlockInputField
   )[];
+  typeOptions?: {
+    minItems?: number;
+    maxItems?: number;
+  };
 };
 
 export type BlockInputField<InputData extends AnyRecord = {}> = CommonBlockInputField<
