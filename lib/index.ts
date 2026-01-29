@@ -4,6 +4,7 @@ export * from "./common";
 export * from "./connection";
 export * from "./integration";
 export * from "./utils/api/HttpClient";
+export * from "./utils/api/URL";
 import type { Integration } from "./integration";
 
 declare global {
