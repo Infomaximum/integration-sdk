@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/Infomaximum/integration-sdk/compare/v3.2.1...v3.3.0) (2026-01-29)
+
+
+### Features
+
+* support multiselect input field ([f783699](https://github.com/Infomaximum/integration-sdk/commit/f783699f47d3b3983df987a5cd57ab8efbc4edcb))
+
 ### [3.2.1](https://github.com/Infomaximum/integration-sdk/compare/v3.2.0...v3.2.1) (2026-01-27)
 
 
