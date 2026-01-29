@@ -97,6 +97,16 @@ export type SelectBlockInputField<Key extends string = string> = CommonBlockInpu
   options: SelectOptions;
 };
 
+export type MultiSelectBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "multiselect";
+  options: SelectOptions;
+  typeOptions?: {
+    minItems?: number;
+    maxItems?: number;
+    delimiter?: string;
+  };
+};
+
 export type KeyValueBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
   type: "keyValue";
   typeOptions?: {
@@ -144,6 +154,7 @@ export type GroupBlockInputField<Key extends string = string> = CommonBlockInput
     | TextBlockInputField
     | NumberBlockInputField
     | SelectBlockInputField
+    | MultiSelectBlockInputField
     | KeyValueBlockInputField
     | BooleanBlockInputField
     | CodeBlockInputField
@@ -160,6 +171,7 @@ export type ArrayBlockInputField<Key extends string = string> = CommonBlockInput
     | TextBlockInputField
     | NumberBlockInputField
     | SelectBlockInputField
+    | MultiSelectBlockInputField
     | KeyValueBlockInputField
     | BooleanBlockInputField
     | CodeBlockInputField
@@ -181,6 +193,7 @@ export type BlockInputField<InputData extends AnyRecord = {}> = CommonBlockInput
     | TextBlockInputField
     | NumberBlockInputField
     | SelectBlockInputField
+    | MultiSelectBlockInputField
     | KeyValueBlockInputField
     | BooleanBlockInputField
     | CodeBlockInputField
