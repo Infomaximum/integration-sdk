@@ -1,4 +1,4 @@
-**@infomaximum/integration-sdk** — это TypeScript библиотека для создания пользовательских интеграций в системе Proceset. Библиотека предоставляет типизированные интерфейсы, утилиты и инструменты для разработки блоков обработки данных, подключений к внешним сервисам и HTTP-клиентов.
+**@infomaximum/integration-sdk** — это TypeScript библиотека для создания пользовательских интеграций в системе Proceset. Библиотека предоставляет типизированные интерфейсы, утилиты и инструменты для разработки блоков обработки данных, подключений к внешним сервисам.
 
 <a href="https://www.npmjs.com/package/@infomaximum/integration-sdk">
     <img alt="npm" src="https://img.shields.io/npm/v/@infomaximum/integration-sdk?style=for-the-badge">
