@@ -49,13 +49,3 @@ export interface IRequestInterceptor {
   onResponse?<T>(response: RequestResult<T>): RequestResult<T>;
   onError?(error: Error): never;
 }
-
-/**
- * Контекст выполнения запроса
- */
-// export interface IRequestContext {
-//   config: IRequestConfig;
-//   startTime: number;
-//   retryCount: number;
-//   metadata: Record<string, any>;
-// }
