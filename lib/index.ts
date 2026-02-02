@@ -11,8 +11,7 @@ export * from "./debugging";
 export * from "./common";
 export * from "./connection";
 export * from "./integration";
-export * from "./utils/api/HttpClient";
-export * from "./utils/api/URL";
+export * from "./utils";
 import type { Integration } from "./integration";
 
 /**
