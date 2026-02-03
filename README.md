@@ -28,7 +28,7 @@ yarn add @infomaximum/integration-sdk
 import type { Integration } from "@infomaximum/integration-sdk";
 
 app = {
-  schema: 1,
+  schema: 2,
   version: "1.0.0",
   label: "Моя интеграция",
   description: "Описание интеграции",
