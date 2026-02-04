@@ -2,7 +2,7 @@ import type { ExecuteService } from "../../../common";
 import { HttpClient, GraphQLClient, BaseClient } from "../clients";
 import { ErrorInterceptor } from "../interceptors/";
 
-import type { IClientConfig, IRequestOptions, IRequestBody } from "../types";
+import type { IClientConfig } from "../types";
 
 type ClientConstructor<T extends BaseClient> = new (
   config: IClientConfig,
@@ -136,7 +136,7 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * @see {@link HttpClient}
    * @see {@link GraphQLClient}
    */
-  setClient<U extends BaseClient>(clientClass: ClientConstructor<U>) {
+  withClient<U extends BaseClient>(clientClass: ClientConstructor<U>) {
     const typedBuilder = this as unknown as ApiClientBuilder<U>;
     typedBuilder.ClientClass = clientClass;
     return typedBuilder;
