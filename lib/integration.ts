@@ -9,7 +9,7 @@ import type { IntegrationConnection } from "./connection";
  * @example
  * ```typescript
  * app = {
- *   schema: 1,
+ *   schema: 2,
  *   version: '1.0.0',
  *   label: 'Моя интеграция',
  *   description: 'Описание интеграции',

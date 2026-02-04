@@ -26,6 +26,17 @@ export type GetRequestConfig = BaseRequestConfig & {
 
 /**
  * Конфигурация для загрузки файлов через multipart/form-data
+ * @example
+ * ```typescript
+ * {multipartBody: [
+            {
+              key: "file",
+              fileName: "<название_файла>.<расширение>",
+              contentType: "application/octet-stream",
+              fileValue: file,
+            },
+]},
+ * ```
  */
 export type MultipartBodyConfig = {
   /** Ключ поля формы */
@@ -93,14 +104,14 @@ export type ExecuteServiceUtils = {
    * @returns Закодированная строка
    */
   base64Encode: (input: string) => string;
-  
+
   /**
    * Декодирование строки из Base64
    * @param input - Закодированная строка
    * @returns Декодированная строка
    */
   base64Decode: (input: string) => string;
-  
+
   /**
    * Генерация ошибки с сообщением
    * @param message - Текст ошибки

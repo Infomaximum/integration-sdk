@@ -28,7 +28,7 @@ yarn add @infomaximum/integration-sdk
 import type { Integration } from "@infomaximum/integration-sdk";
 
 app = {
-  schema: 1,
+  schema: 2,
   version: "1.0.0",
   label: "Моя интеграция",
   description: "Описание интеграции",
@@ -230,6 +230,20 @@ const file = api.get("https://api.example.com/file", true);
 }
 ```
 
+### Выпадающий список c множественным выбором
+
+```typescript
+{
+  key: 'multiselect',
+  type: 'select',
+  label: 'Выберите опцию',
+  options: [
+    { label: 'Опция 1', value: 'option1' },
+    { label: 'Опция 2', value: 'option2' }
+  ]
+}
+```
+
 ### Логическое поле
 
 ```typescript
@@ -346,12 +360,12 @@ const file = api.get("https://api.example.com/file", true);
     }
   ],
   output: [
-    {
+    [{
       users: [
         { id: 1, name: 'Иван', email: 'ivan@example.com' },
         { id: 2, name: 'Мария', email: 'maria@example.com' }
       ]
-    }
+    }]
   ]
 }
 ```

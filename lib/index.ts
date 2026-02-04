@@ -11,7 +11,7 @@ export * from "./debugging";
 export * from "./common";
 export * from "./connection";
 export * from "./integration";
-export * from "./utils/api/HttpClient";
+export * from "./utils";
 import type { Integration } from "./integration";
 
 /**
@@ -20,7 +20,7 @@ import type { Integration } from "./integration";
  * @example
  * ```typescript
  * app = {
- *   schema: 1,
+ *   schema: 2,
  *   version: '1.0.0',
  *   label: 'Моя интеграция',
  *   description: 'Описание',

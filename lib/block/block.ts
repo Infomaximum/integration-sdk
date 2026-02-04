@@ -27,13 +27,23 @@ export type BlockContext = AnyRecord | string | number | undefined;
  * @template Context - Тип контекста для пагинации
  */
 export type ExecuteResult<Context extends BlockContext = undefined> = {
-  /** Описание выходных переменных */
+  /**
+   * * Описание выходных переменных
+   * Определяют, какие данные будут доступны для следующих блоков в цепочке.
+   */
   output_variables: OutputBlockVariables[];
-  /** Массив выходных данных */
+  /** * Массив выходных данных.
+   * ВАЖНО: Платформа ожидает массив "пачек" (batches).
+   * Каждый элемент должен соответствовать `output_variables`.
+   * @example [[{ id: 1, name: 'Ivan' }, { id: 2, name: 'Petr' }]]
+   */
   output: any[];
   /** Состояние для следующей итерации (используется для пагинации) */
   state: Context;
-  /** Есть ли еще данные для загрузки */
+  /** Есть ли еще данные для загрузки
+   * * Флаг наличия следующей страницы.
+   * Если `true`, платформа вызовет `executePagination` повторно с новым `state`.
+   */
   hasNext: boolean;
 };
 
@@ -61,7 +71,7 @@ export type ExecuteResult<Context extends BlockContext = undefined> = {
  *
  *   return {
  *     output_variables: [{ name: 'items', type: 'ObjectArray', struct: [...] }],
- *     output: [{ items: data }],
+ *     output: [[{ items: data }]] // Первый элемент должен быть массивом выходных данных,
  *     state: { page: page + 1 },
  *     hasNext: data.length > 0
  *   };
@@ -138,7 +148,10 @@ export type IntegrationBlock<
   label: string;
   /** Описание блока */
   description: string;
-  /** Поля ввода для блока */
+  /** * Поля ввода для блока
+   * Если используется функция `FunctionBlockInputField`, она будет вызываться платформой
+   * динамически (например, для подгрузки списка папок из внешнего API при настройке блока).
+   */
   inputFields: (BlockInputField<InputData> | FunctionBlockInputField<InputData, AuthData>)[];
   /** Функция выполнения блока с поддержкой пагинации */
   executePagination: IntegrationBlockExecute<InputData, AuthData, Context>;
