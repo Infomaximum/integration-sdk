@@ -16,14 +16,14 @@ type ClientConstructor<T extends BaseClient> = new (
  * добавлять interceptors и создавать удобный API
  *
  * @template T Тип итогового клиента (HttpClient | GraphQLClient | custom).
- *             Определяется методом setClient(). Обеспечивает type-safety
+ *             Определяется методом withClient(). Обеспечивает type-safety
  *             для методов созданного клиента (.get(), .post(), .gql() и т.д.)
  *
  * @example
  * // Создание REST клиента
  * const api = ApiClientBuilder
  *   .create(executeService)
- *   .setClient(HttpClient)
+ *   .withClient(HttpClient)
  *   .withBaseUrl('https://api.example.com')
  *   .withAuth('Bearer token')
  *   .withTimeout(5000)
@@ -41,7 +41,7 @@ type ClientConstructor<T extends BaseClient> = new (
  * // Создание GraphQL клиента
  * const gqlClient = ApiClientBuilder
  *   .create(executeService)
- *   .setClient(GraphQLClient)
+ *   .withClient(GraphQLClient)
  *   .withBaseUrl('https://api.example.com/graphql')
  *   .withHeaders({ 'X-API-Version': '2.0' })
  *   .withTimeout(10000)
@@ -63,7 +63,7 @@ type ClientConstructor<T extends BaseClient> = new (
  *
  * const customClient = ApiClientBuilder
  *   .create(executeService)
- *   .setClient(MyCustomClient)
+ *   .withClient(MyCustomClient)
  *   .withBaseUrl('https://custom-api.com')
  *   .build();
  *
@@ -92,7 +92,7 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
   /**
    * Ссылка на класс клиента, который будет создан методом build().
    * Устанавливается через метод
-   * {@link setClient}
+   * {@link withClient}
    * @private
    */
   private ClientClass?: ClientConstructor<T>;
@@ -126,12 +126,12 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * @example
    * const httpBuilder = ApiClientBuilder
    *   .create(service)
-   *   .setClient(HttpClient); // Теперь билдер типизирован как ApiClientBuilder<HttpClient>
+   *   .withClient(HttpClient); // Теперь билдер типизирован как ApiClientBuilder<HttpClient>
    *
    * @example
    * const gqlBuilder = ApiClientBuilder
    *   .create(service)
-   *   .setClient(GraphQLClient); // Типизирован как ApiClientBuilder<GraphQLClient>
+   *   .withClient(GraphQLClient); // Типизирован как ApiClientBuilder<GraphQLClient>
    *
    * @see {@link HttpClient}
    * @see {@link GraphQLClient}
@@ -320,12 +320,12 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * Применяет все накопленные настройки и interceptors.
    *
    * @returns Экземпляр сконфигурированного клиента выбранного типа
-   * @throws {Error} Если не был вызван метод setClient() перед build()
+   * @throws {Error} Если не был вызван метод withClient() перед build()
    *
    * @example
    * const client = ApiClientBuilder
    *   .create(service)
-   *   .setClient(HttpClient)
+   *   .withClient(HttpClient)
    *   .withBaseUrl('https://api.example.com')
    *   .build();
    *
@@ -333,12 +333,12 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * const data = await client.get('/endpoint');
    *
    * @example
-   * // Обработка ошибки при отсутствии setClient
+   * // Обработка ошибки при отсутствии withClient
    * try {
    *   const client = ApiClientBuilder.create(service).build();
    * } catch (error) {
    *   service.stringError(error.message);
-   *   // "Client class is not defined. Call .setClient(HttpClient) before .build()"
+   *   // "Client class is not defined. Call .withClient(HttpClient) before .build()"
    * }
    */
   build(): T {
