@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/Infomaximum/integration-sdk/compare/v3.3.0...v3.4.0) (2026-02-04)
+
+
+### Features
+
+* add docs and connection factory ([c2ca95a](https://github.com/Infomaximum/integration-sdk/commit/c2ca95ae2049668dbbb13c14c157d0282c2db397))
+* add url constructor ([ce5f71a](https://github.com/Infomaximum/integration-sdk/commit/ce5f71a08e585e9da9511f6f35ef90833e0fa5e1))
+
+
+### Bug Fixes
+
+* change pattern for ApiBuilder ([5da4372](https://github.com/Infomaximum/integration-sdk/commit/5da437246f049b2749f6fc6d91be55699fb0ae23))
+* fix docs ([23ef812](https://github.com/Infomaximum/integration-sdk/commit/23ef8122c2c6b2f025e0b9bb05c1d35b1c6ac50d))
+* fix jsdoc ([af6020d](https://github.com/Infomaximum/integration-sdk/commit/af6020d17454ea85d5839a430d32c08b14249234))
+* remove unused types ([ffa2feb](https://github.com/Infomaximum/integration-sdk/commit/ffa2febc7688c205bee8c8264077866f87058e49))
+* rename builder's setter client method ([434d354](https://github.com/Infomaximum/integration-sdk/commit/434d35438e699f9813d2bd13738a925fce6db90a))
+
 ## [3.3.0](https://github.com/Infomaximum/integration-sdk/compare/v3.2.1...v3.3.0) (2026-01-29)
 
 
