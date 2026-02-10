@@ -15,7 +15,7 @@ import type { IClientConfig, IRequestInterceptor } from "../types";
  * @example
  * // Создание собственного клиента
  * class MyCustomClient extends BaseClient {
- *   async fetchData<T>(endpoint: string): Promise<T> {
+ *    fetchData<T>(endpoint: string): Promise<T> {
  *     const response = this.executeRequest({
  *       url: this.buildUrl(endpoint),
  *       method: 'GET'

@@ -1,3 +1,5 @@
+import type { ExecuteService } from "../../common";
+import { BaseClient } from "./clients/BaseClient";
 /**
  * Базовые типы для API клиентов
  */
@@ -49,3 +51,13 @@ export interface IRequestInterceptor {
   onResponse?<T>(response: RequestResult<T>): RequestResult<T>;
   onError?(error: Error): never;
 }
+
+export type TClientConstructor<T extends BaseClient> = new (
+  config: IClientConfig,
+  service: ExecuteService
+) => T;
+
+export type TApiErrorHandlers = {
+  onHttpError?: (status: number, body: string) => void;
+  onNetworkError?: (error: Error) => void;
+};

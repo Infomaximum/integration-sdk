@@ -1,5 +1,5 @@
 import type { RequestResult } from "../../../common";
-import type { IRequestInterceptor } from "../types";
+import type { IRequestInterceptor, TApiErrorHandlers } from "../types";
 
 /**
  * Перехватчик ошибок HTTP
@@ -16,16 +16,8 @@ import type { IRequestInterceptor } from "../types";
  * ```
  */
 export class ErrorInterceptor implements IRequestInterceptor {
-  private options: {
-    onHttpError?: (status: number, body: string) => void;
-    onNetworkError?: (error: Error) => void;
-  };
-  constructor(
-    options: {
-      onHttpError?: (status: number, body: string) => void;
-      onNetworkError?: (error: Error) => void;
-    } = {}
-  ) {
+  private options: TApiErrorHandlers;
+  constructor(options: TApiErrorHandlers = {}) {
     this.options = options;
   }
 
@@ -38,8 +30,7 @@ export class ErrorInterceptor implements IRequestInterceptor {
       if (this.options.onHttpError) {
         this.options.onHttpError(response.status, errorText);
       }
-
-      throw new Error(`HTTP ${response.status}: ${errorText}`);
+      throw new Error(`HTTP ${response.status}: ${errorText || "No response body"}`);
     }
 
     return response;
@@ -49,6 +40,6 @@ export class ErrorInterceptor implements IRequestInterceptor {
     if (this.options.onNetworkError) {
       this.options.onNetworkError(error);
     }
-    throw error;
+    throw new Error(`Network Error: ${error.message || String(error)}`);
   }
 }
