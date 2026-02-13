@@ -2,12 +2,7 @@ import type { ExecuteService } from "../../../common";
 import { HttpClient, GraphQLClient, BaseClient } from "../clients";
 import { ErrorInterceptor } from "../interceptors/";
 
-import type { IClientConfig } from "../types";
-
-type ClientConstructor<T extends BaseClient> = new (
-  config: IClientConfig,
-  service: ExecuteService
-) => T;
+import type { IClientConfig, TApiErrorHandlers, TClientConstructor } from "../types";
 
 /**
  * Builder для создания API клиента с fluent interface
@@ -28,14 +23,14 @@ type ClientConstructor<T extends BaseClient> = new (
  *   .withAuth('Bearer token')
  *   .withTimeout(5000)
  *   .withErrorHandling({
- *     onHttpError: (status, body) => console.error(`HTTP Error ${status}: ${body}`),
- *     onNetworkError: (error) => console.error('Network Error:', error.message)
+ *     onHttpError: (status, body) => throw new Error(`HTTP Error ${status}: ${body}`),
+ *     onNetworkError: (error) => throw new Error('Network Error:', error.message)
  *   })
  *   .build();
  *
  * // Использование REST клиента
- * const users = await api.get<User[]>('/users');
- * const user = await api.post<User>('/users', { jsonBody: { name: 'John' } });
+ * const users = api.get<User[]>('/users');
+ * const user =  api.post<User>('/users', { jsonBody: { name: 'John' } });
  *
  * @example
  * // Создание GraphQL клиента
@@ -49,14 +44,14 @@ type ClientConstructor<T extends BaseClient> = new (
  *   .build();
  *
  * // Использование GraphQL клиента
- * const data = await gqlClient.query<{ users: User[] }>(`
+ * const data =  gqlClient.query<{ users: User[] }>(`
  *   query { users { id name email } }
  * `);
  *
  * @example
  * // Создание custom клиента
  * class MyCustomClient extends BaseClient {
- *   async customMethod() {
+ *    customMethod() {
  *     return this.execute({ url: '/custom', method: 'GET' });
  *   }
  * }
@@ -85,17 +80,14 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * Обработчики ошибок, применяемые через ErrorInterceptor при построении клиента.
    * @private
    */
-  private errorHandlers?: {
-    onHttpError?: (status: number, body: string) => void;
-    onNetworkError?: (error: Error) => void;
-  };
+  private errorHandlers?: TApiErrorHandlers = {};
   /**
    * Ссылка на класс клиента, который будет создан методом build().
    * Устанавливается через метод
    * {@link withClient}
    * @private
    */
-  private ClientClass?: ClientConstructor<T>;
+  private ClientClass?: TClientConstructor<T>;
   private readonly service: ExecuteService;
 
   private constructor(service: ExecuteService) {
@@ -136,7 +128,7 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * @see {@link HttpClient}
    * @see {@link GraphQLClient}
    */
-  withClient<U extends BaseClient>(clientClass: ClientConstructor<U>) {
+  withClient<U extends BaseClient>(clientClass: TClientConstructor<U>) {
     const typedBuilder = this as unknown as ApiClientBuilder<U>;
     typedBuilder.ClientClass = clientClass;
     return typedBuilder;
@@ -270,15 +262,13 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * // Базовая обработка ошибок
    * builder.withErrorHandling({
    *   onHttpError: (status, body) => {
-   *     console.error(`HTTP Error ${status}:`, body);
    *     if (status === 401) {
-   *       // Перенаправление на логин
-   *       router.push('/login');
+   *        throw new Error(`Authorization error ${status}:`, body);
    *     }
+   *      throw new Error(`Error ${status}:`, body)
    *   },
    *   onNetworkError: (error) => {
-   *     console.error('Network failed:', error.message);
-   *     showToast('Проверьте подключение к интернету');
+   *     throw new Error('Network failed:', error);
    *   }
    * });
    *
@@ -286,8 +276,6 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    * // Продвинутая обработка с логированием
    * builder.withErrorHandling({
    *   onHttpError: (status, body) => {
-   *     logger.error('API_HTTP_ERROR', { status, body });
-   *
    *     switch (status) {
    *       case 401:
    *         refreshToken();
@@ -301,17 +289,13 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    *     }
    *   },
    *   onNetworkError: (error) => {
-   *     logger.error('API_NETWORK_ERROR', {
-   *       message: error.message,
-   *       stack: error.stack
-   *     });
-   *     offline.enable();
+   *     error_log.push(error)
    *   }
    * });
    *
    * @see {@link ErrorInterceptor}
    */
-  withErrorHandling(handlers: typeof this.errorHandlers): this {
+  withErrorHandling(handlers: TApiErrorHandlers): this {
     this.errorHandlers = handlers;
     return this;
   }
@@ -330,7 +314,7 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
    *   .build();
    *
    * // Теперь можно использовать клиент
-   * const data = await client.get('/endpoint');
+   * const data = client.get('/endpoint');
    *
    * @example
    * // Обработка ошибки при отсутствии withClient
@@ -347,9 +331,8 @@ export default class ApiClientBuilder<T extends BaseClient = BaseClient> {
     }
     const client = new this.ClientClass(this.config, this.service);
 
-    if (this.errorHandlers) {
-      client.use(new ErrorInterceptor(this.errorHandlers));
-    }
+    client.use(new ErrorInterceptor(this.errorHandlers));
+
     return client as T;
   }
 }
