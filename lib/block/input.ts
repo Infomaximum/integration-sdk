@@ -8,6 +8,7 @@ export type BlockInputFieldTypes =
   | "number"
   | "integer"
   | "select"
+  | "multiselect"
   | "keyValue"
   | "boolean"
   | "code"
