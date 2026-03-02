@@ -1,4 +1,5 @@
 import type { ExecuteService, RequestConfig, RequestResult } from "../../../common";
+import { javaToJsHashmapTranslate, type IJavaMap } from "../api_utils/JavaConverter";
 import type { IClientConfig, IRequestInterceptor } from "../types";
 
 /**
@@ -240,6 +241,7 @@ export abstract class BaseClient {
     try {
       // 2. Выполняем сам запрос
       response = this.service.request<T>(finalConfig);
+      response.headers = javaToJsHashmapTranslate(response.headers as IJavaMap);
     } catch (error) {
       // Сюда попадаем, только если запросу "плохо" (DNS, Сеть, Таймаут)
       for (const interceptor of this.interceptors) {
