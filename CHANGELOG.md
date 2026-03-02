@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.2](https://github.com/Infomaximum/integration-sdk/compare/v3.4.1...v3.4.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* added miss multiselect field type ([1a7e9aa](https://github.com/Infomaximum/integration-sdk/commit/1a7e9aa3e58f9eb02984aff285d9f46fc052437f))
+
 ### [3.4.1](https://github.com/Infomaximum/integration-sdk/compare/v3.4.0...v3.4.1) (2026-02-13)
 
 ## [3.4.0](https://github.com/Infomaximum/integration-sdk/compare/v3.3.0...v3.4.0) (2026-02-04)
