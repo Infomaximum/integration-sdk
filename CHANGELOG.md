@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.0](https://github.com/Infomaximum/integration-sdk/compare/v3.4.2...v3.5.0) (2026-03-03)
+
+
+### Features
+
+* added support for decoding JavaMap headers from the response. ([1d30849](https://github.com/Infomaximum/integration-sdk/commit/1d308495aeb06585a0852de538d75ba81c3b157c))
+
+
+### Bug Fixes
+
+* fix nits after review ([a9e6dca](https://github.com/Infomaximum/integration-sdk/commit/a9e6dca7a6ad04bfd872c6703856d4bc7d9ea6df))
+
 ### [3.4.2](https://github.com/Infomaximum/integration-sdk/compare/v3.4.1...v3.4.2) (2026-02-18)
 
 
