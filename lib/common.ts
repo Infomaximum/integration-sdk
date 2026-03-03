@@ -74,6 +74,8 @@ export type RequestResult<Response = ArrayBuffer> = {
   status: number;
   /** Тело ответа */
   response: Readonly<Response> | undefined;
+  /** HTTP заголовки ответа */
+  headers: Record<string, any>;
 };
 
 /**

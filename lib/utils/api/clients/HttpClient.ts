@@ -1,6 +1,6 @@
-import type { ExecuteService } from "../../../common";
+import type { ExecuteService, RequestResult } from "../../../common";
 import { BaseClient } from "./BaseClient";
-import type { IClientConfig, IRequestOptions, IRequestBody } from "../types";
+import type { IClientConfig, IRequestOptions, IRequestBody, ApiResponse } from "../types";
 
 /**
  * HTTP клиент для REST API
@@ -40,7 +40,7 @@ export class HttpClient extends BaseClient {
    * @param path - Относительный путь (при наличии baseUrl) или полный URL.
    * @returns @template T Декодированный JSON объект, строка или undefined.
    */
-  get<T = any>(path: string, options?: IRequestOptions): T {
+  get<T = any>(path: string, options?: IRequestOptions): ApiResponse<T> | undefined {
     const response = this.executeRequest<ArrayBuffer>(
       this.mergeConfig({
         url: this.buildUrl(path),
@@ -49,7 +49,7 @@ export class HttpClient extends BaseClient {
       })
     );
 
-    return this.decodeResponse<T>(response.status, response.response, false);
+    return this.decodeResponse<T>(response, false);
   }
 
   /**
@@ -70,28 +70,40 @@ export class HttpClient extends BaseClient {
   /**
    * Выполняет POST-запрос
    */
-  post<T = any>(path: string, body?: IRequestBody, options?: IRequestOptions): T {
+  post<T = any>(
+    path: string,
+    body?: IRequestBody,
+    options?: IRequestOptions
+  ): ApiResponse<T> | undefined {
     return this.mutate<T>("POST", path, body, options);
   }
 
   /**
    * Выполняет PUT-запрос
    */
-  put<T = any>(path: string, body?: IRequestBody, options?: IRequestOptions): T {
+  put<T = any>(
+    path: string,
+    body?: IRequestBody,
+    options?: IRequestOptions
+  ): ApiResponse<T> | undefined {
     return this.mutate<T>("PUT", path, body, options);
   }
 
   /**
    * Выполняет PATCH-запрос
    */
-  patch<T = any>(path: string, body?: IRequestBody, options?: IRequestOptions): T {
+  patch<T = any>(
+    path: string,
+    body?: IRequestBody,
+    options?: IRequestOptions
+  ): ApiResponse<T> | undefined {
     return this.mutate<T>("PATCH", path, body, options);
   }
 
   /**
    * Выполняет DELETE-запрос
    */
-  delete<T = any>(path: string, options?: IRequestOptions): T {
+  delete<T = any>(path: string, options?: IRequestOptions): ApiResponse<T> | undefined {
     const response = this.executeRequest<ArrayBuffer>(
       this.mergeConfig({
         url: this.buildUrl(path),
@@ -100,7 +112,7 @@ export class HttpClient extends BaseClient {
       })
     );
 
-    return this.decodeResponse<T>(response.status, response.response, false);
+    return this.decodeResponse<T>(response, false);
   }
 
   /**
@@ -111,7 +123,7 @@ export class HttpClient extends BaseClient {
     path: string,
     body?: IRequestBody,
     options?: IRequestOptions
-  ): T {
+  ): ApiResponse<T> | undefined {
     const response = this.executeRequest<ArrayBuffer>(
       this.mergeConfig({
         url: this.buildUrl(path),
@@ -121,38 +133,35 @@ export class HttpClient extends BaseClient {
       })
     );
 
-    return this.decodeResponse<T>(response.status, response.response, false);
+    return this.decodeResponse<T>(response, false);
   }
 
   /**
    * Декодирует ответ сервера
    */
-  private decodeResponse<T>(
-    status: number,
-    responseBuffer: Readonly<ArrayBuffer> | undefined,
-    isFile: boolean
-  ): T {
+  private decodeResponse<T>(data: RequestResult, isFile: boolean): ApiResponse<T> | any {
+    const { status, response, headers } = data;
     // 204 No Content
     if (status === 204) {
       return undefined as T;
     }
-    if (!responseBuffer) {
+    if (!response) {
       throw new Error("HTTP: Response buffer is empty!");
     }
 
     if (isFile) {
-      return responseBuffer as T;
+      return response as T;
     }
 
     try {
-      const text = new TextDecoder().decode(responseBuffer);
+      const text = new TextDecoder().decode(response);
 
       // Пытаемся распарсить как JSON
       try {
-        return JSON.parse(text) as T;
+        return { data: JSON.parse(text) as T, headers };
       } catch {
         // Если не JSON, возвращаем как текст
-        return text as T;
+        return { data: text as unknown as T, headers };
       }
     } catch (err) {
       throw new Error(`Failed to decode response: ${(err as Error).message}`);

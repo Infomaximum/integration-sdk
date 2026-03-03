@@ -13,6 +13,11 @@ export interface IClientConfig {
   repeatMode?: boolean;
 }
 
+export interface ApiResponse<T> {
+  data: T;
+  headers: Record<string, any>;
+}
+
 // GraphQL типы
 export interface IGraphQLRequest {
   query: string;
