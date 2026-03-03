@@ -39,8 +39,7 @@ export interface IJavaMap<K = string, V = any> {
   getOrDefault(key: K, defaultValue: V): V;
 }
 
-export const javaToJsHashmapTranslate = (javaHashMap: IJavaMap): Record<string, any> => {
-  const rawHeaders = javaHashMap;
+export const javaToJsHashmapTranslate = (rawHeaders: IJavaMap): Record<string, any> => {
   const jsHeaders: Record<string, any> = {};
 
   try {
