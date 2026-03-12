@@ -16,6 +16,7 @@ export interface IClientConfig {
 export interface ApiResponse<T> {
   data: T;
   headers: Record<string, any>;
+  status: number;
 }
 
 // GraphQL типы
