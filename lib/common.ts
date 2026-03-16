@@ -41,12 +41,14 @@ export type GetRequestConfig = BaseRequestConfig & {
 export type MultipartBodyConfig = {
   /** Ключ поля формы */
   key: string;
+  /** Текстовое значение поля */
+  textValue?: string;
   /** Имя файла */
-  fileName: string;
+  fileName?: string;
   /** Содержимое файла в виде ArrayBuffer */
-  fileValue: ArrayBuffer;
+  fileValue?: ArrayBuffer;
   /** MIME-тип файла */
-  contentType: string;
+  contentType?: string;
 };
 
 /**
