@@ -158,10 +158,10 @@ export class HttpClient extends BaseClient {
 
       // Пытаемся распарсить как JSON
       try {
-        return { data: JSON.parse(text) as T, headers };
+        return { data: JSON.parse(text) as T, headers, status };
       } catch {
         // Если не JSON, возвращаем как текст
-        return { data: text as unknown as T, headers };
+        return { data: text as unknown as T, headers, status };
       }
     } catch (err) {
       throw new Error(`Failed to decode response: ${(err as Error).message}`);
