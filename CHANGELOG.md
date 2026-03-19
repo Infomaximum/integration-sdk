@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/Infomaximum/integration-sdk/compare/v3.5.0...v3.6.0) (2026-03-19)
+
+
+### Features
+
+* add status response field ([ff950f6](https://github.com/Infomaximum/integration-sdk/commit/ff950f611d508f8e33712da60491785a37c46907))
+* added support new form-data field ([87e63db](https://github.com/Infomaximum/integration-sdk/commit/87e63dbbfe559732d8ab7ff964ed0a5bcd99bd51))
+
+
+### Bug Fixes
+
+* forgot to update response type ([01cf487](https://github.com/Infomaximum/integration-sdk/commit/01cf487c7ee6ad846db90281af66c2b811cd6129))
+
 ## [3.5.0](https://github.com/Infomaximum/integration-sdk/compare/v3.4.2...v3.5.0) (2026-03-03)
 
 
