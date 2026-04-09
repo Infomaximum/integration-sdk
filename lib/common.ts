@@ -132,7 +132,7 @@ export type ExecuteServiceUtils = {
   /** Индекс текущей страницы данных
    * @returns Индекс текущей порции входных данных
    */
-  index: number;
+  index(): number;
 };
 
 /**
