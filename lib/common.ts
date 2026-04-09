@@ -122,6 +122,17 @@ export type ExecuteServiceUtils = {
    * @throws Всегда выбрасывает исключение
    */
   stringError(message: string): never;
+
+  /**
+   * Проверка наличия следующей страницы данных
+   * @returns true, если есть ли следующая порция данных, иначе false
+   */
+  hasNext(): boolean;
+
+  /** Индекс текущей страницы данных
+   * @returns Индекс текущей порции входных данных
+   */
+  index: number;
 };
 
 /**
