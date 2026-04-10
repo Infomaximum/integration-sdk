@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.0](https://github.com/Infomaximum/integration-sdk/compare/v3.6.0...v3.7.0) (2026-04-10)
+
+
+### Features
+
+* added lost utility methods ([39e5922](https://github.com/Infomaximum/integration-sdk/commit/39e5922025127c145e334a900bdc43f622dbdce0))
+
+
+### Bug Fixes
+
+* added lost brackets ([12753aa](https://github.com/Infomaximum/integration-sdk/commit/12753aa65b08f8c8e5f43565c76c3f8c3942b22e))
+
 ## [3.6.0](https://github.com/Infomaximum/integration-sdk/compare/v3.5.0...v3.6.0) (2026-03-19)
 
 
