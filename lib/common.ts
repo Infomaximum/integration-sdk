@@ -43,8 +43,17 @@ export type MultipartBodyConfig = {
   key: string;
   /** Текстовое значение поля */
   textValue?: string;
-  /** Имя файла */
+  /**
+   * Имя файла. Если содержит не-ASCII символы, используйте вместе с `encodedFileName`.
+   * В этом случае `fileName` должно быть ASCII-совместимым fallback-именем.
+   */
   fileName?: string;
+  /**
+   * URL-encoded имя файла (результат `encodeURIComponent`) для поддержки RFC 5987.
+   * Когда присутствует, runtime строит: `filename="{fileName}"; filename*=UTF-8''{encodedFileName}`
+   * Используйте хелпер `encodeFilename()` для автоматического заполнения обоих полей.
+   */
+  encodedFileName?: string;
   /** Содержимое файла в виде ArrayBuffer */
   fileValue?: ArrayBuffer;
   /** MIME-тип файла */
