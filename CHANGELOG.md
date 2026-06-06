@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.8.0](https://github.com/Infomaximum/integration-sdk/compare/v3.7.0...v3.8.0) (2026-06-06)
+
+
+### Features
+
+* добавлена поддержка не-ASCII имён файлов в multipart (RFC 5987) ([c4ab150](https://github.com/Infomaximum/integration-sdk/commit/c4ab150f657efcc50d8ef265e977ccccd860801e))
+
 ## [3.7.0](https://github.com/Infomaximum/integration-sdk/compare/v3.6.0...v3.7.0) (2026-04-10)
 
 
