@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.9.0](https://github.com/Infomaximum/integration-sdk/compare/v3.8.0...v3.9.0) (2026-06-10)
+
+
+### Features
+
+* добавлен тип поля ввода file_object ([3e2afc3](https://github.com/Infomaximum/integration-sdk/commit/3e2afc37a53fe68550c9859d1786d0f4a5a508c6))
+
 ## [3.8.0](https://github.com/Infomaximum/integration-sdk/compare/v3.7.0...v3.8.0) (2026-06-06)
 
 
