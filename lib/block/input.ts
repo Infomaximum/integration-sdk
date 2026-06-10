@@ -16,7 +16,8 @@ export type BlockInputFieldTypes =
   | "date"
   | "datetime"
   | "stream"
-  | "array";
+  | "array"
+  | "file_object";
 
 /**
  * Поддерживаемые SQL диалекты для редактора кода
@@ -247,6 +248,39 @@ export type StreamBlockInputField<Key extends string = string> = CommonBlockInpu
 };
 
 /**
+ * Поле загрузки файла (file_object)
+ *
+ * Позволяет пользователю прикрепить файл. В `bundle.inputData` приходит
+ * объект с содержимым, именем и размером файла — см. {@link FileObjectValue}.
+ * @template Key - Тип ключа поля
+ */
+export type FileObjectBlockInputField<Key extends string = string> = CommonBlockInputField<Key> & {
+  type: "file_object";
+};
+
+/**
+ * Значение поля `file_object` во входных данных блока (`bundle.inputData`).
+ *
+ * @example
+ * ```typescript
+ * executePagination: (z, bundle) => {
+ *   const file = bundle.inputData.fo as FileObjectValue;
+ *   // file.file_content — содержимое файла
+ *   // file.file_name    — имя файла
+ *   // file.file_size    — размер файла в байтах
+ * }
+ * ```
+ */
+export type FileObjectValue = {
+  /** Содержимое файла */
+  file_content: ArrayBuffer;
+  /** Имя файла */
+  file_name: string;
+  /** Размер файла в байтах */
+  file_size: number;
+};
+
+/**
  * Группа полей (вложенные поля)
  * @template Key - Тип ключа поля
  */
@@ -265,6 +299,7 @@ export type GroupBlockInputField<Key extends string = string> = CommonBlockInput
     | DateTimeBlockInputField
     | StreamBlockInputField
     | IntegerBlockInputField
+    | FileObjectBlockInputField
   )[];
 };
 
@@ -287,6 +322,7 @@ export type ArrayBlockInputField<Key extends string = string> = CommonBlockInput
     | DateTimeBlockInputField
     | StreamBlockInputField
     | IntegerBlockInputField
+    | FileObjectBlockInputField
   )[];
   typeOptions?: {
     /** Минимальное количество элементов */
@@ -317,4 +353,5 @@ export type BlockInputField<InputData extends AnyRecord = {}> = CommonBlockInput
     | IntegerBlockInputField
     | StreamBlockInputField
     | ArrayBlockInputField
+    | FileObjectBlockInputField
   );
